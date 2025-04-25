@@ -39,7 +39,7 @@
 		    background-color: #14c2e9;
 		    padding: 1.3rem 3rem;
 		    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-		    z-index: 1000; /* optional, ensures it's above other elements */
+		    z-index: 1000; /* optional, ensures it's above other elements */		    
 		}
 
         .navbar-left a {
@@ -191,7 +191,7 @@
             <div class="navbar-center">
                 <a href="attraction.jsp">Attractions</a>
                 <a href="reservation.jsp">Reservations</a>
-                <a href="my-reservation.jsp">My Reservation</a>
+                <a href="lookup.jsp">My Reservation</a>
             </div>
 
             <!-- Auth Buttons -->
@@ -225,7 +225,7 @@
             <div class="navbar-mobile">
                 <a href="attraction.jsp">Attractions</a>
                 <a href="reservation.jsp">Reservations</a>
-                <a href="my-reservation.jsp">My Reservation</a>
+                <a href="lookup.jsp">My Reservation</a>
             </div>
         </div>
     </header>
