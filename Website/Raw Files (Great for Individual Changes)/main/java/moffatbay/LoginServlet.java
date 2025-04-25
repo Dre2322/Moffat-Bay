@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
         String redirect = request.getParameter("redirect");  // 🔁 optional redirect path
 
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = "SELECT * FROM users WHERE email = ? AND password_hash = ?";
+            String sql = "SELECT * FROM users WHERE email = ? AND pass = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, email);
                 stmt.setString(2, PasswordUtil.hashPassword(password));

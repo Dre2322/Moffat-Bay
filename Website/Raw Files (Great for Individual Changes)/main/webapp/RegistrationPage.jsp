@@ -16,7 +16,7 @@
 	
 </head>
 <script>
-	<!-- email regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$" -->
+	<!-- email regex = "^[\\w.-]+@[\\w.-]+\\.\\w{2,}$" -->
 	<!-- phone regex = "^(\\d{3}[- .]?){1}\\d{4}$" -->
 	<!-- pass regex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\w).{8,}$" -->
 	<!-- This Checks to see if both Passwords match before submission -->
@@ -83,7 +83,8 @@
                         <input type="text" id="lastname" name="lastname" required>
                     </label>
                     <label class="email" for="email"><span>*</span> Email Address:
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required
+                        pattern = "^[\\w.-]+@[\\w.-]+\\.\\w{2,}$">
                     </label>
                     <label class="phone" for="phone"><span>*</span> Phone:
                         <input type="tel" id="phone" name="phone" required oninput="validatePhoneNumber()">
