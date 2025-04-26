@@ -1,5 +1,12 @@
 <!-- Room Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page allows users to select rooms for their reservation at Moffat Bay Lodge. The user can choose the number of
+rooms for each available room type, with the option to edit the room count if they have previously made a reservation.
+The page includes dynamic features such as enabling/disabling room count inputs based on the checkbox selection and
+populating the form with previously selected room types. It also provides error handling and submits the reservation
+details to the backend for confirmation. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">

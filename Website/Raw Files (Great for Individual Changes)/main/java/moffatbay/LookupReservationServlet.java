@@ -1,10 +1,10 @@
 /*
- * Lookup Reservation Servlet - Alpha Team
- * Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
- *
- * Purpose:
- * Allows users to look up their reservation using either a confirmation number or an email.
- * Performs a join between reservations and users to validate ownership and fetch reservation details.
+Lookup Reservation Servlet - Alpha Team
+Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+Purpose:
+Allows users to look up their reservation using either a confirmation number or an email.
+Performs a join between reservations and users to validate ownership and fetch reservation details.
  */
 
 package moffatbay;

@@ -1,5 +1,10 @@
 <!-- Footer Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page defines the footer section of the website. It includes links to important pages, such as the "About Us"
+page and the "Look Up Reservation" page. The footer is styled with a background color and includes social media icons
+for visual appeal. It appears at the bottom of the pages to provide consistent navigation for users across the site. -->
 <%@page language="java" contentType="text/html"%>
 <% String base = (String)application.getAttribute("base"); %>
 <!DOCTYPE html>

@@ -1,6 +1,12 @@
 /* Registration Page CSS Alpha Team */
-/* Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh */@charset "UTF-8";
+/* Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh */
 
+/* Purpose:
+This CSS file styles the Registration Page for Moffat Bay Lodge. It provides a visually appealing layout for the user
+to input their details, including their name, email, address, phone number, and password. The form is responsive and
+adapts to different screen sizes. The page includes a background image and custom styling for form elements, error
+messages, and other text. The layout is designed for both desktop and mobile views. */
+@charset "UTF-8";
 
 body {
     background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center/cover;

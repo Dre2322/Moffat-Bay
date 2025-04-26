@@ -1,5 +1,13 @@
-/* Database Connection Servlet Test Alpha Team
-   Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh */
+/*
+Database Connection Page - Alpha Team
+Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+Purpose:
+This class provides centralized methods for connecting to the MBay MySQL database.
+- Loads credentials and connection properties from an external `db.properties` file.
+- Provides a `getConnection()` method to connect to the MBay schema.
+- Provides a `createDatabase()` method to connect without a schema (for initial DB creation).
+ */
 
 package moffatbay;
 

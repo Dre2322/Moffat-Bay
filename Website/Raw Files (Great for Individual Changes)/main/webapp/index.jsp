@@ -1,5 +1,11 @@
 <!-- Landing Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This is the landing page for Moffat Bay Lodge. It introduces users to the lodge with a visually appealing hero section,
+including a call-to-action button to book a stay. Below the hero section, users can explore the island’s attractions
+like hiking, kayaking, whale watching, and scuba diving. The page provides a welcoming overview of the lodge and its
+offerings, guiding users toward making a reservation. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

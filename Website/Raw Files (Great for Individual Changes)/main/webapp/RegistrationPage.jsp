@@ -1,5 +1,12 @@
 <!-- Registration Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page provides the registration functionality for users to create a new account on Moffat Bay Lodge's website.
+It includes fields for the user's first name, last name, email, phone, address, city, state, zipcode, and password.
+The form also validates the password criteria (uppercase, lowercase, special character, number, and minimum length),
+ensures the confirmation password matches, and validates the phone number format. Upon successful registration,
+the user's data will be processed and saved in the backend system. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*"%>
 <!DOCTYPE html>

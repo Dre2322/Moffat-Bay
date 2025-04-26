@@ -1,5 +1,16 @@
-/* Registration Servlet Alpha Team
-   Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh */
+/*
+Registration Servlet Page - Alpha Team
+Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+Purpose:
+Handles new user registration. This servlet:
+- Validates and sanitizes input data from the registration form
+- Hashes user passwords using SHA-256
+- Inserts new user records into the MySQL `users` table
+- Retrieves the auto-generated user_id using AUTO_INCREMENT
+- Automatically logs in the user by storing user_id in session
+- Redirects to reservation or confirmation based on session context
+*/
 
 package moffatbay;
 

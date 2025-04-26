@@ -1,5 +1,13 @@
-/* Login Servlet Test Alpha Team
-   Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh */
+/*
+Lookup Reservation Servlet - Alpha Team
+Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+Purpose:
+This servlet handles the login functionality for the application. It processes the login form, alidates
+the user's credentials by querying the database, and manages the session for the authenticated user.
+If successful, it redirects the user to the specified page or the default home page. If the credentials are
+invalid, it forwards the user back to the login page with an error message.
+*/
 
 package moffatbay;
 

@@ -1,12 +1,11 @@
 <!--
- * Reservation Summary Page - Alpha Team
- * Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
- *
- * Purpose:
- * This page displays a user's booking confirmation after they complete or look up a reservation.
- * It shows key reservation details such as dates, guest count, room types, total cost, and provides
- * options to cancel, submit, or edit the reservation depending on login status.
--->
+Reservation Summary Page - Alpha Team
+Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+Purpose:
+This page displays a user's booking confirmation after they complete or look up a reservation.
+It shows key reservation details such as dates, guest count, room types, total cost, and provides
+options to cancel, submit, or edit the reservation depending on login status. -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 

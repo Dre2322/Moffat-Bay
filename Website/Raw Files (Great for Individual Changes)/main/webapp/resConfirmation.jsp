@@ -1,10 +1,10 @@
-<!-- 
- * Reservation Confirmation Page - Alpha Team
- * Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
- *
- * Purpose:
- * This page displays a message confirming that the user's reservation has been successfully submitted.
- * It includes a return button and a link to explore available guest attractions.
+<!--
+Reservation Confirmation Page - Alpha Team
+Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+Purpose:
+This page displays a message confirming that the user's reservation has been successfully submitted.
+It includes a return button and a link to explore available guest attractions.
 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
