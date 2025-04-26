@@ -1,5 +1,11 @@
 <!-- About Us/Contact Us Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page provides information about Moffat Bay Lodge, including a brief overview of the lodge, its offerings,
+and contact details. It is divided into two sections: "About Us" and "Contact Information."
+The About Us section highlights the lodge's location, amenities, and experiences, while the Contact Information
+section provides phone, email, and physical address details for potential guests. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">

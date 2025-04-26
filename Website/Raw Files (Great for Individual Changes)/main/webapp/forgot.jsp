@@ -1,5 +1,11 @@
 <!-- Forgot Password Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page allows users to request a password reset by entering their email address. Upon submission,
+the form triggers a request to the `ForgotServlet`, which handles sending the password reset instructions.
+The page also includes a link back to the login page for users who remember their credentials.
+The layout is designed to be user-friendly with clear instructions for the password reset process. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,5 +1,12 @@
 <!-- Reservation Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page allows users to make a reservation at Moffat Bay Lodge by selecting their check-in and check-out dates.
+Upon submitting the form, the page sends the date range to the `ReservationServlet`, which handles the logic of
+checking room availability. The page is styled to be user-friendly, with responsive design adjustments for different
+screen sizes, ensuring a seamless experience on both desktop and mobile devices. The form also includes error message
+handling to provide feedback to the user. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">

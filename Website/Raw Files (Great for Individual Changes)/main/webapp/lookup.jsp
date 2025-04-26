@@ -1,12 +1,10 @@
-<!-- 
-    Look Up Page - Alpha Team
-    Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+<!-- Lookup Reservation Page Alpha Team -->
+<!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
 
-    Purpose:
+<!-- Purpose:
     This page allows users to look up their reservation by providing either a confirmation number or an email address.
-    It submits the data to LookupReservationServlet, which handles the validation and lookup logic using a JOIN 
-    between reservations and users. If an error is encountered (e.g., no match or email mismatch), it is displayed here.
--->
+    It submits the data to LookupReservationServlet, which handles the validation and lookup logic using a JOIN
+    between reservations and users. If an error is encountered (e.g., no match or email mismatch), it is displayed here. -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 

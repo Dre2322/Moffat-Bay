@@ -1,5 +1,11 @@
 <!-- User Welcome Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page greets the logged-in user by displaying their first name, which is retrieved from the session.
+If the user is not logged in, they are redirected to the login page. The page includes a welcome message and
+imports shared elements such as the navigation bar and footer. This provides a personalized user experience for
+authenticated users. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%

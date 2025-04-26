@@ -1,15 +1,15 @@
 /*
- * Reservation Servlet Page - Alpha Team
- * Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
- *
- * Purpose:
- * This servlet handles reservation flow:
- * - selectRoom: fetches available room types for given dates
- * - confirmReservation: finalizes reservation, calculates cost, saves to DB
- * - editReservation: reloads form with previous data for modification
- *
- * Now integrates with the normalized `reservation_rooms` table and uses `java.time.LocalDate`.
- */
+Reservation Servlet Page - Alpha Team
+Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+Purpose:
+This servlet handles reservation flow:
+- selectRoom: fetches available room types for given dates
+- confirmReservation: finalizes reservation, calculates cost, saves to DB
+- editReservation: reloads form with previous data for modification
+
+Now integrates with the normalized `reservation_rooms` table and uses `java.time.LocalDate`.
+*/
 
 package moffatbay;
 

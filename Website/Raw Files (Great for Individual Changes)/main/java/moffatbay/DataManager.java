@@ -1,5 +1,13 @@
-/* Data Manager Servlet Test Alpha Team
-   Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh */
+/*
+DataManager Page Alpha Team
+Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+Purpose:
+This class, `DataManager`, is responsible for managing server connections to the database.
+It provides methods to establish a connection, close the connection, and access database credentials
+such as the URL, username, and password. The connection details are handled privately to ensure secure
+access to the database.
+*/
 
 package moffatbay;
 

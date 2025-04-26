@@ -1,5 +1,12 @@
 /* Finalize Reservation Servlet Test Alpha Team
-   Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh */
+Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+Purpose:
+This servlet finalizes the user's reservation by storing reservation details in the database.
+It retrieves data from the form submission (confirmation number, dates, room details, number of guests, total cost)
+and inserts this information into the reservations table. Upon success, the user is redirected to a confirmation page.
+In case of an error, an error message is displayed on the reservation summary page.
+*/
 
 package moffatbay;
 

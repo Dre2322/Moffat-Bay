@@ -1,5 +1,12 @@
 <!-- NavBar Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page defines the navigation bar (NavBar) for the Moffat Bay Lodge website. It includes the logo section,
+navigation links (such as Attractions, Reservations, and My Reservation), and authentication buttons
+(Login/Sign Up or Logout) based on whether the user is logged in. The navigation bar is designed to be responsive,
+with mobile support for a hamburger menu and collapsible links. It provides a consistent, user-friendly interface
+for users to navigate through the site. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

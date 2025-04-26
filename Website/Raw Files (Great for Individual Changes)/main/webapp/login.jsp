@@ -1,5 +1,12 @@
 <!-- Login Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page provides the login functionality for users to access their Moffat Bay Lodge accounts.
+It includes form fields for the user’s email and password, error message handling, and conditional redirects
+based on the page's flow. The page also displays informative messages if the user needs to log in to confirm
+a reservation or if they have just successfully registered. Additionally, it includes links to reset the
+password or sign up for a new account. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%
     String redirect = request.getParameter("redirect");

@@ -1,5 +1,11 @@
 <!-- Registration Confirmation Page Alpha Team -->
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+
+<!-- Purpose:
+This page displays a confirmation message to the user after successfully registering an account.
+It welcomes the user, showing their first name if available, and provides a button to navigate to the homepage.
+The background and layout are designed to enhance the user experience with a visually pleasing and clear
+confirmation message. -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
