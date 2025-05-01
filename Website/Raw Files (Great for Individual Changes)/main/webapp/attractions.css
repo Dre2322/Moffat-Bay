@@ -1,0 +1,235 @@
+/*
+    Attractions Page CSS - Alpha Team
+    Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+    Purpose:
+    Styles the attractions page using collapsible sections, a hero section with an image overlay,
+    clean spacing between attractions, carousel displays, and responsive support for all devices.
+    Includes visual theming that matches the Moffat Bay sunset hero section.
+*/
+
+/* ---------- Base Styles ---------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #fceabb, #f8f9fa);
+    color: #343a40;
+}
+
+/* ---------- Hero Section (Right-Aligned Text) ---------- */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    background: url('images/MBay-Lodge.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.hero-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    text-align: left;
+    padding: 3rem;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+.hero-overlay h4 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.hero-overlay hr {
+    width: 60px;
+    border: 1px solid #fff;
+    margin: 0 0 20px 0;
+}
+
+.hero-overlay h1 {
+    font-size: 2.6rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-overlay p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* ---------- Main Container ---------- */
+.container {
+    max-width: 1000px;
+    margin: 100px auto 40px;
+    padding: 50px 40px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.75); /* semi-transparent white */
+    backdrop-filter: blur(8px); /* frosted effect */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* deep shadow for pop */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+/* ---------- Page Heading ---------- */
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.4rem;
+    
+    background: linear-gradient(to right, #FF7E5F, #feb47b);
+    background-clip: text; /* ✅ Standard syntax */
+    -webkit-background-clip: text; /* ✅ WebKit support (Safari, Chrome) */
+
+    color: transparent; /* ✅ Standard */
+    -webkit-text-fill-color: transparent; /* ✅ WebKit-specific */
+
+    border-bottom: 2px solid #cce6ff;
+    padding-bottom: 10px;
+}
+
+/* ---------- Attraction Sections ---------- */
+.attraction {
+    padding: 20px 0;
+    border-bottom: 1px solid #cce6ff;
+}
+
+.attraction:last-child {
+    border-bottom: none;
+}
+
+.attraction h3 {
+    margin-bottom: 8px;
+    font-size: 1.6rem;
+    color: #FF7E5F;
+}
+
+.attraction p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* ---------- Details Section ---------- */
+.details {
+    margin-top: 12px;
+    display: none;
+}
+
+.details img {
+    margin-top: 12px;
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Toggle Link ---------- */
+a.toggle-link {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+a.toggle-link:hover {
+    text-decoration: underline;
+    color: #FF7E5F;
+    transform: scale(1.05);
+}
+
+/* ---------- Carousel Styles ---------- */
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.carousel-image {
+    display: none;
+    width: 100%;
+    border-radius: 6px;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.carousel-image.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50%;
+    z-index: 1;
+    user-select: none;
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 768px) {
+    .hero {
+        height: auto;
+        padding: 2rem;
+        justify-content: center;
+    }
+
+    .hero-overlay {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .hero-overlay h1 {
+        font-size: 2rem;
+    }
+
+    .hero-overlay p {
+        font-size: 1rem;
+    }
+
+    .container {
+        margin: 60px 20px;
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    .attraction h3 {
+        font-size: 1.4rem;
+    }
+
+    .attraction p {
+        font-size: 0.95rem;
+    }
+
+    .carousel-btn {
+        font-size: 1.4rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
