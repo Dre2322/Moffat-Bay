@@ -189,6 +189,48 @@ a.toggle-link:hover {
     right: 10px;
 }
 
+/* ---------- Side-by-Side Layout for Attractions ---------- */
+.attraction-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    gap: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.attraction-section.row-reverse {
+    flex-direction: row-reverse;
+}
+
+.attraction-text {
+    width: 50%;
+}
+
+.attraction-text h3 {
+    color: #FF7E5F;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+.attraction-text p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.6;
+}
+
+.attraction-media {
+    width: 50%;
+}
+
+.attraction-media img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
 /* ---------- Bottom CTA Button Section ---------- */
 .bottom-cta {
     display: flex;
@@ -252,6 +294,21 @@ a.toggle-link:hover {
         font-size: 0.95rem;
     }
 
+        .attraction-section,
+    .attraction-section.row-reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .attraction-text,
+    .attraction-media {
+        width: 100%;
+    }
+
+    .attraction-media img {
+        margin-top: 1rem;
+    }
+    
     .carousel-btn {
         font-size: 1.4rem;
         padding: 0.3rem 0.6rem;
