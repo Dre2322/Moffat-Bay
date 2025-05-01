@@ -189,6 +189,30 @@ a.toggle-link:hover {
     right: 10px;
 }
 
+/* ---------- Bottom CTA Button Section ---------- */
+.bottom-cta {
+    display: flex;
+    justify-content: flex-start;
+    padding: 30px 60px 10px;
+    background: transparent;
+}
+
+.cta-button {
+    background-color: #FF7E5F;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    background-color: #e95e42;
+    transform: translateY(-2px);
+}
+
 /* ---------- Responsive Design ---------- */
 @media (max-width: 768px) {
     .hero {
@@ -231,5 +255,10 @@ a.toggle-link:hover {
     .carousel-btn {
         font-size: 1.4rem;
         padding: 0.3rem 0.6rem;
+    }
+    
+        .bottom-cta {
+        justify-content: center;
+        padding: 20px;
     }
 }

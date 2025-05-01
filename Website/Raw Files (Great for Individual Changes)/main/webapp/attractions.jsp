@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="attractions.css">
 </head>
 
-<body>
+<body id="top">
 
 <!-- Include persistent navigation bar -->
 <jsp:include page="Navbar.jsp" flush="true"></jsp:include>
@@ -106,6 +106,13 @@
 	  </div>
     </div>
   </div>
+</div>
+
+<!-- Call-to-action Button Section -->
+<div class="bottom-cta">
+  <a href="#top" class="cta-button">↑ Back to Top</a>
+  <!-- Optional: Swap above for "Book Now" with link -->
+  <!-- <a href="reservations.jsp" class="cta-button">Book Now</a> -->
 </div>
 
 <!-- Include persistent footer -->
