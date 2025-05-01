@@ -74,8 +74,8 @@
     <div class="attraction-media">
       <div class="carousel">
         <img class="carousel-image active" src="images/Kayaking1.jpg" alt="Kayaking 1">
-        <img class="carousel-image" src="images/Kayaking3.jpeg" alt="Kayaking 2">
-        <img class="carousel-image" src="images/Kayaking2.jpeg" alt="Kayaking 3">
+        <img class="carousel-image" src="images/Kayaking2.jpeg" alt="Kayaking 2">
+        <img class="carousel-image" src="images/Kayaking3.jpeg" alt="Kayaking 3">
         <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
         <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
       </div>
@@ -125,13 +125,13 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- Call-to-action Button Section -->
-<div class="bottom-cta">
-  <a href="#top" class="cta-button">↑ Back to Top</a>
-  <!-- Optional: Swap above for "Book Now" with link -->
-  <!-- <a href="reservations.jsp" class="cta-button">Book Now</a> -->
+  
+  <!-- Call-to-action Button Section -->
+  <div class="bottom-cta">
+    <a href="#top" class="cta-button">↑ Back to Top</a>
+    <!-- Optional: Swap above for "Book Now" with link -->
+    <!-- <a href="reservations.jsp" class="cta-button">Book Now</a> -->
+  </div>
 </div>
 
 <!-- Include persistent footer -->
