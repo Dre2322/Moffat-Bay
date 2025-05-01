@@ -196,7 +196,7 @@ for users to navigate through the site. -->
 
             <!-- Navigation Links for Desktop -->
             <div class="navbar-center">
-                <a href="attraction.jsp">Attractions</a>
+                <a href="attractions.jsp">Attractions</a>
                 <a href="reservation.jsp">Reservations</a>
                 <a href="lookup.jsp">My Reservation</a>
             </div>
@@ -230,7 +230,7 @@ for users to navigate through the site. -->
 
             <!-- Mobile Navigation Menu -->
             <div class="navbar-mobile">
-                <a href="attraction.jsp">Attractions</a>
+                <a href="attractions.jsp">Attractions</a>
                 <a href="reservation.jsp">Reservations</a>
                 <a href="lookup.jsp">My Reservation</a>
             </div>

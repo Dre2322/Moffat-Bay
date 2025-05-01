@@ -2,17 +2,17 @@
 <!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
 
 <!-- Purpose:
-This page defines the footer section of the website. It includes a link to the "About Us" page
-and displays a salmon logo for branding, as specifically requested by the client.
+This page defines the footer section of the website. It includes a link to the "About Us" page 
+and displays a salmon logo for branding, as specifically requested by the client. 
 The salmon image enhances the site's theme and floats with a smooth animation for visual appeal.
-The footer is styled with a background color and shadow for a clean, modern design and provides
+The footer is styled with a background color and shadow for a clean, modern design and provides 
 consistent navigation across all pages.
 -->
 
 <%@page language="java" contentType="text/html"%>
 <% 
     // Get the base path of the application from the ServletContext attribute
-    String base = (String)application.getAttribute("base");
+    String base = (String)application.getAttribute("base"); 
 %>
 <!DOCTYPE html>
 <html lang="en">

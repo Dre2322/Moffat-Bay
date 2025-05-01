@@ -124,7 +124,7 @@ offerings, guiding users toward making a reservation. -->
     <div class="attractions">
       <%
         // You can fetch attractions dynamically from the backend
-        String[] attractions = {"Hiking", "Kayaking", "Whale Watching", "Scuba Diving"};
+        String[] attractions = {"Hiking", "Kayaking", "Champagne Ferry Ride", "Fishing Experience"};
         for (String attraction : attractions) {
       %>
         <div class="attraction-card">
