@@ -40,70 +40,89 @@
   <h2>Explore Island Experiences</h2>
 
   <!-- Guided Tour Hike section -->
-  <div class="attraction">
-    <h3>Guided Tour Hike</h3>
-    <p>Enjoy a group-led hike through the famous Gravel Point Preserve Hiking Trail.</p>
-    <a class="toggle-link" onclick="toggleAttraction('hiking', this)">View more...</a>
-    <div id="hiking" class="details" style="display:none;">
+  <div class="attraction-section row-reverse">
+    <!-- Text Column -->
+    <div class="attraction-text">
+      <h3>Guided Tour Hike</h3>
+      <p>Enjoy a group-led hike through the famous Gravel Point Preserve Hiking Trail.</p>
       <p>This scenic trail offers beautiful ocean overlooks, wildlife sightings, and relaxing forest paths. Our knowledgeable guide shares fun facts along the way!</p>
+    </div>
+
+    <!-- Image Column -->
+    <div class="attraction-media">
       <div class="carousel">
-  		<img class="carousel-image active" src="images/Hiking1.jpeg" alt="Hiking 1">
-  		<img class="carousel-image" src="images/Hiking2.jpg" alt="Hiking 2">
-  		<img class="carousel-image" src="images/Hiking3.jpg" alt="Hiking 3">
-  		<button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
-  		<button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
-	  </div>
+        <img class="carousel-image active" src="images/Hiking1.jpeg" alt="Hiking 1">
+        <img class="carousel-image" src="images/Hiking2.jpg" alt="Hiking 2">
+        <img class="carousel-image" src="images/Hiking3.jpg" alt="Hiking 3">
+        <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
+        <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
+      </div>
     </div>
   </div>
+
 
   <!-- Kayaking section -->
-  <div class="attraction">
-    <h3>Kayaking</h3>
-    <p>Paddle through calm waters and explore sea caves and rocky island edges.</p>
-    <a class="toggle-link" onclick="toggleAttraction('kayaking', this)">View more...</a>
-    <div id="kayaking" class="details" style="display:none;">
+  <div class="attraction-section">
+    <!-- Text Column -->
+    <div class="attraction-text">
+      <h3>Kayaking</h3>
+      <p>Paddle through calm waters and explore sea caves and rocky island edges.</p>
       <p>Rent a kayak or join a group led by local paddlers. A great experience for beginners or pros with gear and safety equipment included.</p>
+    </div>
+
+    <!-- Image Column -->
+    <div class="attraction-media">
       <div class="carousel">
-  		<img class="carousel-image active" src="images/Kayaking1.jpg" alt="Hiking 1">
-  		<img class="carousel-image" src="images/Kayaking3.jpeg" alt="Hiking 2">
-  		<img class="carousel-image" src="images/Kayaking2.jpeg" alt="Hiking 3">
-  		<button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
-  		<button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
-	  </div>
+        <img class="carousel-image active" src="images/Kayaking1.jpg" alt="Kayaking 1">
+        <img class="carousel-image" src="images/Kayaking3.jpeg" alt="Kayaking 2">
+        <img class="carousel-image" src="images/Kayaking2.jpeg" alt="Kayaking 3">
+        <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
+        <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
+      </div>
     </div>
   </div>
+
 
   <!-- Champagne Ferry Ride section -->
-  <div class="attraction">
-    <h3>Champagne-Filled Ferry Ride</h3>
-    <p>Relax on a scenic ferry cruise while enjoying complimentary champagne and stunning island views.</p>
-    <a class="toggle-link" onclick="toggleAttraction('ferry', this)">View more...</a>
-    <div id="ferry" class="details" style="display:none;">
+  <div class="attraction-section row-reverse">
+    <!-- Text Column -->
+    <div class="attraction-text">
+      <h3>Champagne-Filled Ferry Ride</h3>
+      <p>Relax on a scenic ferry cruise while enjoying complimentary champagne and stunning island views.</p>
       <p>Our evening ferry tours offer a luxurious escape with drinks, snacks, and unforgettable photo opportunities at sunset.</p>
-      <div class="carousel">
-  		<img class="carousel-image active" src="images/FerryRide2.jpg" alt="Hiking 1">
-  		<img class="carousel-image" src="images/FerryRide3.jpg" alt="Hiking 2">
-  		<img class="carousel-image" src="images/FerryRide1.jpg" alt="Hiking 3">
-  		<button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
-  		<button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
-	  </div>
+    </div>
+
+  <!-- Image Column -->
+  <div class="attraction-media">
+    <div class="carousel">
+      <img class="carousel-image active" src="images/FerryRide2.jpg" alt="Ferry 1">
+      <img class="carousel-image" src="images/FerryRide3.jpg" alt="Ferry 2">
+      <img class="carousel-image" src="images/FerryRide1.jpg" alt="Ferry 3">
+      <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
+      <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
     </div>
   </div>
+  </div>
+
 
   <!-- Fishing Experience section -->
-  <div class="attraction">
-    <h3>Fishing Experience with a Pro</h3>
-    <p>Spend a half-day on the water with our experienced guide who helps you learn, fish, and even get your license!</p>
-    <a class="toggle-link" onclick="toggleAttraction('fishing', this)">View more...</a>
-    <div id="fishing" class="details" style="display:none;">
+  <div class="attraction-section">
+    <!-- Text Column -->
+    <div class="attraction-text">
+      <h3>Fishing Experience with a Pro</h3>
+      <p>Spend a half-day on the water with our experienced guide who helps you learn, fish, and even get your license!</p>
       <p>Our local fishing expert teaches everything from casting basics to advanced techniques. We also help you obtain a valid fishing license on the spot.</p>
+    </div>
+
+    <!-- Image Column -->
+    <div class="attraction-media">
       <div class="carousel">
-  		<img class="carousel-image active" src="images/Fishing1.jpg" alt="Hiking 1">
-  		<img class="carousel-image" src="images/Fishing2.jpg" alt="Hiking 2">
-  		<img class="carousel-image" src="images/Fishing3.jpg" alt="Hiking 3">
-  		<button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
-  		<button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
-	  </div>
+        <img class="carousel-image active" src="images/Fishing1.jpg" alt="Fishing 1">
+        <img class="carousel-image" src="images/Fishing2.jpg" alt="Fishing 2">
+        <img class="carousel-image" src="images/Fishing3.jpg" alt="Fishing 3">
+        <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
+        <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
+      </div>
     </div>
   </div>
 </div>
