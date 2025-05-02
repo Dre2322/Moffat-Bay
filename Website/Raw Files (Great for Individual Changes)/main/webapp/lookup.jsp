@@ -1,12 +1,14 @@
-<!-- Lookup Reservation Page Alpha Team -->
-<!-- Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh -->
+<!-- 
+    Look Up Page - Alpha Team
+    Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
 
-<!-- Purpose:
+    Purpose:
     This page allows users to look up their reservation by providing either a confirmation number or an email address.
-    It submits the data to LookupReservationServlet, which handles the validation and lookup logic using a JOIN
-    between reservations and users. If an error is encountered (e.g., no match or email mismatch), it is displayed here. -->
+    It submits the data to LookupReservationServlet, which handles the validation and lookup logic using a JOIN 
+    between reservations and users. If an error is encountered (e.g., no match or email mismatch), it is displayed here.
+-->
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -137,16 +139,10 @@
 	    %>
 	    
 	    <div id="lookupDetails" >	
-		    <%
-		    	String confirmationNumber = (String) request.getAttribute("confirmationNumber");
-		    	Integer numOfGuests = (Integer) request.getAttribute("numOfGuests");
-		    	String checkInDate = (String) request.getAttribute("checkInDate");
-		    	String checkOutDate = (String) request.getAttribute("checkOutDate");
-		    	Double totalCost = (Double) request.getAttribute("totalCost");
-		    	String roomName = (String) request.getAttribute("roomName");
-		    	
+		    <%	
 		    	//if no attributes have been received from the servlet do not display this
-		    	if (confirmationNumber != null) {
+		    	List<Map<String, Object>> reservations = (List<Map<String, Object>>) request.getAttribute("reservations");
+    			if (reservations != null && !reservations.isEmpty()) {
 		    %>
 
 		    
@@ -162,14 +158,20 @@
 			    		<th>Check Out</th>
 			    		<th> Total </th>
 			    	</tr>
+			    	<%
+			    		for (Map<String, Object> res : reservations) {
+			    	%>
 			    	<tr>
-			    		<td><%= confirmationNumber %></td>
-			    		<td><%= roomName %></td>
-			    		<td><%= numOfGuests %></td>
-			    		<td><%= checkInDate %></td>
-			    		<td><%= checkOutDate %></td>
-			    		<td><%= totalCost %></td>
+			    		<td><%= res.get("confirmationNumber") %></td>
+			    		<td><%= res.get("roomName") %></td>
+			    		<td><%= res.get("numOfGuests") %></td>
+			    		<td><%= res.get("checkInDate") %></td>
+			    		<td><%= res.get("checkOutDate") %></td>
+			    		<td><%= res.get("totalCost") %></td>
 			    	</tr>
+			    	<%
+			    		}
+			    	%>
 			    </table>
 		    </div>
 		    <% } %> 	    
