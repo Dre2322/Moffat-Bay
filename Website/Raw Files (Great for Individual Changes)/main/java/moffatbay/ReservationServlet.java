@@ -22,8 +22,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import moffatbay.DBConnection;
-
 @WebServlet("/ReservationServlet")
 public class ReservationServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
