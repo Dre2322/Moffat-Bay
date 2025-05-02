@@ -99,15 +99,21 @@ The layout is designed to be user-friendly with clear instructions for the passw
 		<h2>Forgot Password</h2>
 		
 		<form method="post" action="ForgotServlet">
-			<label for="email">Enter your email address:</label>
-			<input type="email" name="email" required />
-			
-			<input type="submit" value="Send Reset Instructions" />
+    		<label for="email">Enter your email address:</label>
+    		<input type="email" name="email" required />
+    		<input type="submit" value="Send Reset Instructions" />
 		</form>
-		
+
+		<% if (request.getAttribute("message") != null) { %>
+  			<div class="message"><%= request.getAttribute("message") %></div>
+		<% } else if (request.getAttribute("error") != null) { %>
+  			<div class="error"><%= request.getAttribute("error") %></div>
+		<% } %>
+
 		<div class="back">
-			<a href="login.jsp">Back to Login</a>
+		    <a href="login.jsp">Back to Login</a>
 		</div>
+
 	</div>
 	
 	<!-- This imports the Footer into the page below everything -->
