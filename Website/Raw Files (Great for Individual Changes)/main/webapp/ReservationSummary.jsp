@@ -3,20 +3,22 @@ Reservation Summary Page - Alpha Team
 Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
 
 Purpose:
-This page displays a user's booking confirmation after they complete or look up a reservation.
-It shows key reservation details such as dates, guest count, room types, total cost, and provides
-options to cancel, submit, or edit the reservation depending on login status. -->
+Displays reservation confirmation details after submission or lookup. Includes:
+- Summary of check-in, check-out, guest count, room types, and cost
+- Logic to allow editing if the user is logged in
+- Redirect to homepage if accessed without valid session context
+-->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
-    // Redirect to homepage if summary data was not properly set
+    // Ensure session data is valid, otherwise redirect
     if (request.getAttribute("confirmationNumber") == null) {
         response.sendRedirect("index.jsp");
         return;
     }
 
-    // Safely check session to determine if user is logged in
+    // Determine login status from session
     HttpSession activeSession = request.getSession(false);
     boolean isLoggedIn = activeSession != null && activeSession.getAttribute("user_id") != null;
 %>
@@ -30,7 +32,8 @@ options to cancel, submit, or edit the reservation depending on login status. --
   <link rel="stylesheet" href="reservationsummary.css" />
 </head>
 <body>
-    
+
+  <!-- Reuse site-wide navigation -->
   <jsp:include page="Navbar.jsp" flush="true" />
 
   <main>
@@ -38,10 +41,12 @@ options to cancel, submit, or edit the reservation depending on login status. --
       <h2>Booking Confirmation</h2>
       <h3>Booking Details</h3>
 
+      <!-- Confirmation ID shown prominently -->
       <p style="text-align: center; font-size: 16px;">
         Confirmation Number: <strong><%= request.getAttribute("confirmationNumber") %></strong>
       </p>
 
+      <!-- Core reservation fields -->
       <div class="summary-row">
         <div class="summary-item">
           <p>Check-In:</p>
@@ -65,6 +70,7 @@ options to cancel, submit, or edit the reservation depending on login status. --
         </div>
       </div>
 
+      <!-- Room types and optional notes -->
       <div class="room-details">
         Room Details: 
         <strong><%= request.getAttribute("roomDetails") != null ? request.getAttribute("roomDetails") : "No room details available" %></strong>
@@ -76,6 +82,7 @@ options to cancel, submit, or edit the reservation depending on login status. --
         </div>
       <% } %>
 
+      <!-- Confirmation buttons -->
       <form method="post" action="resConfirmation.jsp">
         <div class="buttons">
           <button id="cancelbtn" type="button" onclick="location.href='index.jsp'">Cancel</button>
@@ -83,6 +90,7 @@ options to cancel, submit, or edit the reservation depending on login status. --
         </div>
       </form>
 
+      <!-- Edit option only shown to logged-in users -->
       <% if (isLoggedIn) { %>
         <form method="post" action="ReservationServlet">
           <input type="hidden" name="action" value="editReservation">
@@ -91,7 +99,7 @@ options to cancel, submit, or edit the reservation depending on login status. --
           <input type="hidden" name="numGuests" value="<%= request.getAttribute("numOfGuests") %>" />
           <input type="hidden" name="roomDetails" value="<%= request.getAttribute("roomDetails") %>" />
           <input type="hidden" name="roomCount" value="<%= request.getAttribute("roomCount") %>" />
-          <input type="hidden" name="confirmationNumber" value="<%= request.getAttribute("confirmationNumber") %>" />
+          <input type="hidden" name="reservationId" value="<%= request.getAttribute("reservationId") != null ? request.getAttribute("reservationId") : "" %>" />
           <div class="buttons" style="margin-top: 10px;">
             <button id="editbtn" type="submit">Edit</button>
           </div>
@@ -104,6 +112,7 @@ options to cancel, submit, or edit the reservation depending on login status. --
     </div>
   </main>
 
+  <!-- Reuse site-wide footer -->
   <jsp:include page="Foot.jsp" flush="true" />
 
 </body>
