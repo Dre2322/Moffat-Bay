@@ -70,5 +70,8 @@ in the database. Upon completion, the user is shown a success or error message.
   <% } %>
 </div>
 
+<!-- Footer -->
+<jsp:include page="Foot.jsp" flush="true" />
+
 </body>
 </html>
