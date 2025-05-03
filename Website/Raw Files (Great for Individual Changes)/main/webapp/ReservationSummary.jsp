@@ -3,22 +3,21 @@ Reservation Summary Page - Alpha Team
 Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
 
 Purpose:
-Displays reservation confirmation details after submission or lookup. Includes:
-- Summary of check-in, check-out, guest count, room types, and cost
-- Logic to allow editing if the user is logged in
-- Redirect to homepage if accessed without valid session context
+This page displays a user's booking confirmation after they complete or look up a reservation.
+It shows key reservation details such as dates, guest count, room types, total cost, and provides
+options to cancel, submit, or edit the reservation depending on login status.
 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
-    // Ensure session data is valid, otherwise redirect
+    // Redirects user to homepage if no confirmation number is found (to prevent direct access)
     if (request.getAttribute("confirmationNumber") == null) {
         response.sendRedirect("index.jsp");
         return;
     }
 
-    // Determine login status from session
+    // Check if a user is logged in by validating session presence
     HttpSession activeSession = request.getSession(false);
     boolean isLoggedIn = activeSession != null && activeSession.getAttribute("user_id") != null;
 %>
@@ -33,7 +32,7 @@ Displays reservation confirmation details after submission or lookup. Includes:
 </head>
 <body>
 
-  <!-- Reuse site-wide navigation -->
+  <!-- Include navigation bar -->
   <jsp:include page="Navbar.jsp" flush="true" />
 
   <main>
@@ -41,12 +40,12 @@ Displays reservation confirmation details after submission or lookup. Includes:
       <h2>Booking Confirmation</h2>
       <h3>Booking Details</h3>
 
-      <!-- Confirmation ID shown prominently -->
+      <!-- Display the confirmation number for reference -->
       <p style="text-align: center; font-size: 16px;">
         Confirmation Number: <strong><%= request.getAttribute("confirmationNumber") %></strong>
       </p>
 
-      <!-- Core reservation fields -->
+      <!-- Display the main reservation summary -->
       <div class="summary-row">
         <div class="summary-item">
           <p>Check-In:</p>
@@ -70,19 +69,20 @@ Displays reservation confirmation details after submission or lookup. Includes:
         </div>
       </div>
 
-      <!-- Room types and optional notes -->
+      <!-- List of selected room types and quantities -->
       <div class="room-details">
         Room Details: 
         <strong><%= request.getAttribute("roomDetails") != null ? request.getAttribute("roomDetails") : "No room details available" %></strong>
       </div>
 
+      <!-- Display any special requests if they exist -->
       <% if (request.getAttribute("specialRequests") != null) { %>
         <div class="room-details">
           Special Requests: <strong><%= request.getAttribute("specialRequests") %></strong>
         </div>
       <% } %>
 
-      <!-- Confirmation buttons -->
+      <!-- Cancel or submit the reservation -->
       <form method="post" action="resConfirmation.jsp">
         <div class="buttons">
           <button id="cancelbtn" type="button" onclick="location.href='index.jsp'">Cancel</button>
@@ -90,21 +90,24 @@ Displays reservation confirmation details after submission or lookup. Includes:
         </div>
       </form>
 
-      <!-- Edit option only shown to logged-in users -->
+      <!-- Edit button visible only to logged-in users -->
       <% if (isLoggedIn) { %>
         <form method="post" action="ReservationServlet">
+          <!-- Hidden fields carry reservation data into edit flow -->
           <input type="hidden" name="action" value="editReservation">
           <input type="hidden" name="checkInDate" value="<%= request.getAttribute("checkInDate") %>" />
           <input type="hidden" name="checkOutDate" value="<%= request.getAttribute("checkOutDate") %>" />
           <input type="hidden" name="numGuests" value="<%= request.getAttribute("numOfGuests") %>" />
           <input type="hidden" name="roomDetails" value="<%= request.getAttribute("roomDetails") %>" />
           <input type="hidden" name="roomCount" value="<%= request.getAttribute("roomCount") %>" />
-          <input type="hidden" name="reservationId" value="<%= request.getAttribute("reservationId") != null ? request.getAttribute("reservationId") : "" %>" />
+          <input type="hidden" name="confirmationNumber" value="<%= request.getAttribute("confirmationNumber") %>" />
+          <input type="hidden" name="reservationId" value="<%= request.getAttribute("reservationId") %>" />
           <div class="buttons" style="margin-top: 10px;">
             <button id="editbtn" type="submit">Edit</button>
           </div>
         </form>
       <% } else { %>
+        <!-- Prompt the user to log in if they're not already -->
         <div class="login-reminder">
           Login to edit your reservation. <a href="login.jsp">Go to Login</a>
         </div>
@@ -112,7 +115,7 @@ Displays reservation confirmation details after submission or lookup. Includes:
     </div>
   </main>
 
-  <!-- Reuse site-wide footer -->
+  <!-- Include footer -->
   <jsp:include page="Foot.jsp" flush="true" />
 
 </body>
