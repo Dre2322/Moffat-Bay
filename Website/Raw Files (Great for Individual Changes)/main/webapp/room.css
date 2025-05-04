@@ -1,0 +1,104 @@
+/* Room Page Styles - Alpha Team
+   Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+   Purpose:
+   This stylesheet styles the room selection page for Moffat Bay Lodge.
+   It supports a clean, responsive UI layout where users can enter guest count
+   and choose room types by selecting quantities from dropdown menus. */
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f5f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 750px;
+  margin: 60px auto; /* centers the container */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  font-size: 1.8rem;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+}
+
+.room-entry {
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  padding: 20px 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.room-entry strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.room-sub {
+  display: flex;
+  flex-direction: column;
+}
+
+.room-sub label {
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.submit-btn {
+  margin-top: 25px;
+  width: 100%;
+  background-color: #3ec6f0;
+  color: white;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #33b1d6;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 12px;
+}
