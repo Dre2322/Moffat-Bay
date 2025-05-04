@@ -1,0 +1,110 @@
+/* Registration Page CSS Alpha Team */
+/* Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh */
+
+/* Purpose:
+This CSS file styles the Registration Page for Moffat Bay Lodge. It provides a visually appealing layout for the user
+to input their details, including their name, email, address, phone number, and password. The form is responsive and
+adapts to different screen sizes. The page includes a background image and custom styling for form elements, error
+messages, and other text. The layout is designed for both desktop and mobile views. */
+@charset "UTF-8";
+
+body {
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center/cover;
+}
+
+#container {
+    background-color: azure;
+    border-style: solid;
+    border-radius: 5px;
+    /*margin: 150px 150px 200px 150px;*/
+    margin: 5% 18%;
+}
+
+h1 {
+	margin: auto;
+	text-align: center;
+    font-size: 50px;
+}
+
+h3 {
+	margin: auto;
+}
+
+.requiredfield {
+	text-align: center;
+    padding-top: 10px;
+}
+
+span {
+    color: red;
+}
+
+.passrequirements {
+	text-align: left;
+	padding: 20px 25% 50px 25%;
+}
+
+.entryfields {
+    padding: 0% 15% 0% 15%;
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.entryleft, .entryright, .entryleft2, .entryright2 {
+    flex: 50%;
+    width: 350px;
+    padding-top: 3%;
+}
+
+
+.firstname, .lastname, .email, .phone, .pass {
+    display: flex;
+    justify-content: right;
+    padding-bottom: 10px;
+}
+
+.address, .city, .state, .zip, .confirmpass {
+    display: flex;
+    justify-content: right;
+    padding-bottom: 10px;
+}
+
+
+.pass, .confirmpass {
+    padding-top: 30px;
+}
+
+.create {
+    font-size: 20px;
+    padding: 5px 20px;
+    margin: 4% 12% 4% 78%;
+}
+
+.error {
+	color: red;
+	text-align: left;
+	padding: 0px 25% 50px 30%;
+}
+
+
+@media screen and (max-width: 1000px) {
+	.entryfields {
+		width: 100%;
+		padding: 0;
+	    flex-direction: column;
+	    align-items: flex-start;
+	    column-gap: 0%;
+	}
+
+    .entryright, .entryright2 {
+        justify-content: flex-start;
+    }
+
+    .entryleft, .entryright {
+        width: 350px;
+        flex: 100%;
+    }
+
+}
