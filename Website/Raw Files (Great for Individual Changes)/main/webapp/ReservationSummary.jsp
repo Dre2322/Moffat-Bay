@@ -83,18 +83,16 @@ options to cancel, submit, or edit the reservation depending on login status.
       <% } %>
 
       <!-- Cancel or submit the reservation -->
-      <form method="post" action="ReservationServlet">
-        <div class="buttons">
+      <div class="buttons">
+        <form method="post" action="ReservationServlet">
           <input type="hidden" name="reservationId" value="<%= request.getAttribute("reservationId") %>" />
           <input type="hidden" name="action" value="cancelReservation">
           <button id="cancelbtn" type="submit">Cancel</button>
-        </div>
-      </form>
-      <form method="post" action="resConfirmation.jsp">
-        <div class="buttons">
+        </form>
+        <form method="post" action="resConfirmation.jsp">
           <button id="submitbtn" type="submit">Submit</button>
-        </div>
-      </form>
+        </form>
+      </div>
 
       <!-- Edit button visible only to logged-in users -->
       <% if (isLoggedIn) { %>
