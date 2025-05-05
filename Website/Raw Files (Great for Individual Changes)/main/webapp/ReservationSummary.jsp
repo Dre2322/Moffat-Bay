@@ -85,7 +85,6 @@ options to cancel, submit, or edit the reservation depending on login status.
       <!-- Cancel or submit the reservation -->
       <form method="post" action="ReservationServlet">
         <div class="buttons">
-          <input type="hidden" name="confirmationNumber" value="<%= request.getAttribute("confirmationNumber") %>" />
           <input type="hidden" name="reservationId" value="<%= request.getAttribute("reservationId") %>" />
           <input type="hidden" name="action" value="cancelReservation">
           <button id="cancelbtn" type="submit">Cancel</button>
