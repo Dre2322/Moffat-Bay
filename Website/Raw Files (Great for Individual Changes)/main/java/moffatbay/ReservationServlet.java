@@ -37,6 +37,7 @@ public class ReservationServlet extends HttpServlet {
             case "selectRoom" -> handleSelectRoom(request, response);
             case "confirmReservation" -> handleConfirmReservation(request, response);
             case "editReservation" -> handleEditReservation(request, response);
+            case "cancelReservation" -> handleCancelReservation(request, response);
             default -> response.sendRedirect("reservation.jsp");
         }
     }
@@ -237,6 +238,36 @@ public class ReservationServlet extends HttpServlet {
         request.setAttribute("availableRooms", availableRooms);
 
         request.getRequestDispatcher("room.jsp").forward(request, response);
+    }
+    
+    // Handles the Cancellation of a Reservation
+    private void handleCancelReservation(HttpServletRequest request, HttpServletResponse response)
+    		throws ServletException, IOException {
+    	int reservationid = Integer.valueOf(request.getParameter("reservationId"));
+    	
+    	try (Connection conn = DBConnection.getConnection()) {
+    		// Delete Reservation Room First Due to Foreign Key Usage
+    		try (PreparedStatement cancel = conn.prepareStatement(
+    				"DELETE FROM reservation_rooms WHERE reservation_id = ?")) {
+    			cancel.setInt(1, reservationid);
+    			cancel.executeUpdate();
+    		}
+    		
+    		// Then Delete Reservation
+    		try (PreparedStatement cancel = conn.prepareStatement(
+    				"DELETE FROM reservations WHERE reservation_id = ?")) {
+    			cancel.setInt(1, reservationid);
+    			cancel.executeUpdate();
+    		}
+    	} catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Database error: " + e.getMessage());
+            request.getRequestDispatcher("ReservationSummary.jsp").forward(request, response);
+            return;
+        }
+    	
+    	// Return to Main Page
+    	request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     // Queries DB for available room types based on exclusion
