@@ -114,15 +114,18 @@ section provides phone, email, and physical address details for potential guests
   <jsp:include page="Navbar.jsp" flush="true" />
 
   <div class="container">
-    <div class="about-section">
-      <h2>About Moffat Bay Lodge</h2>
-      <p>
-        Moffat Bay Lodge is a peaceful island escape nestled in the breathtaking Pacific Northwest. Our lodge offers stunning views, cozy accommodations, and immersive outdoor adventures like whale watching, hiking, and kayaking.
-      </p>
-      <p>
-        Whether you're seeking relaxation, romance, or outdoor excitement, Moffat Bay Lodge provides a perfect balance of comfort and nature. With welcoming staff and unforgettable experiences, we’re proud to be a top destination for travelers near and far.
-      </p>
-    </div>
+  	<div class="about-section">
+    	<h2>About Moffat Bay Lodge</h2>
+    	<p>
+    	  Moffat Bay Lodge is a peaceful island escape nestled in the breathtaking Pacific Northwest. Our lodge offers stunning views, cozy accommodations, and unforgettable outdoor experiences that showcase the natural beauty of the region.
+    	</p>
+    	<p>
+    	  Guests can immerse themselves in adventure with activities such as guided hiking tours along scenic cliffside trails, kayaking through calm waters and hidden sea caves, or enjoying a champagne-filled ferry ride with panoramic coastal views. For those seeking hands-on excitement, our fishing excursions with local pros provide both fun and expert instruction.
+    	</p>
+    	<p>
+    	  Whether you're seeking relaxation, romance, or outdoor thrill, Moffat Bay Lodge provides the perfect blend of comfort and adventure. With welcoming staff and uniquely curated island experiences, we’re proud to be a top destination for travelers near and far.
+    	</p>
+  	</div>
 
     <div class="contact-section">
       <h3>Contact Information</h3>
