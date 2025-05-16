@@ -13,18 +13,33 @@ offerings, guiding users toward making a reservation. -->
   <meta name="author" content="Andres Melendez, Jeffrey Reid">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Moffat Bay Lodge</title>
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons (optional) -->
   <script src="https://kit.fontawesome.com/6af38ce6e0.js" crossorigin="anonymous"></script>
+
   <style>
+    /* Reset default browser styles and enable border-box sizing */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Base body font and text color */
     body {
       font-family: 'Open Sans', sans-serif;
       color: #2c3e50;
+    }
+
+    /* ======= CONTAINER (CENTERS CONTENT ON ULTRAWIDE SCREENS) ======= */
+    .container {
+      width: 100%;
+      max-width: 1440px; /* Prevents stretching on ultra-wide monitors */
+      margin: 0 auto;
+      padding: 0 2rem;    /* Adds side padding on smaller screens */
     }
 
     /* ======= HERO SECTION ======= */
@@ -37,19 +52,17 @@ offerings, guiding users toward making a reservation. -->
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 2rem;
       z-index: 1;
     }
 
-    header.hero h2 {
-      font-family: 'Georgia', serif;;
+    .hero-content h2 {
+      font-family: 'Georgia', serif;
       font-size: 4rem;
       margin-bottom: 1rem;
       color: white;
     }
 
-    header.hero p {
-      font-family: 'Open Sans', sans-serif;
+    .hero-content p {
       font-size: 1.8rem;
       margin-bottom: 2rem;
       color: white;
@@ -61,8 +74,9 @@ offerings, guiding users toward making a reservation. -->
       padding: 0.75rem 2rem;
       border: none;
       font-size: 1.2rem;
-      cursor: pointer;
       border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .cta-button:hover {
@@ -71,8 +85,13 @@ offerings, guiding users toward making a reservation. -->
 
     /* ======= MAIN SECTION ======= */
     .section {
-      padding: 3rem 2rem;
+      padding: 3rem 0;
       text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
     }
 
     .attractions {
@@ -86,17 +105,37 @@ offerings, guiding users toward making a reservation. -->
       flex: 1 1 250px;
       background-color: #ecf0f1;
       border-radius: 10px;
-      padding: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
     }
 
-    /* ======= RESPONSIVE ======= */
+    .attraction-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .attraction-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .attraction-card p {
+      font-size: 1rem;
+    }
+
+    /* ======= RESPONSIVE (TABLETS & PHONES) ======= */
     @media (max-width: 768px) {
-      header.hero h2 {
+      .hero-content h2 {
         font-size: 2.2rem;
       }
 
-      header.hero p {
+      .hero-content p {
         font-size: 1.2rem;
+      }
+
+      .cta-button {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
       }
     }
   </style>
@@ -104,40 +143,47 @@ offerings, guiding users toward making a reservation. -->
 
 <body>
 
-<!-- This imports the NavBar into the page -->
-<jsp:include page="Navbar.jsp" flush="true"></jsp:include>
+  <!-- ======= INCLUDE NAVBAR ======= -->
+  <jsp:include page="Navbar.jsp" flush="true"></jsp:include>
 
-    <!-- Hero Section -->
-      <header class="hero">
-        <div class="hero-content">
-          <h2>Welcome to Moffat Bay Lodge</h2>
-          <p>Experience Tranquility in the Heart of Nature</p>
-          <a href="reservation.jsp">
-            <button class="cta-button">Book Your Stay</button>
-          </a>
-        </div>
-      </header>
+  <!-- ======= HERO SECTION ======= -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Welcome to Moffat Bay Lodge</h2>
+        <p>Experience Tranquility in the Heart of Nature</p>
+        <a href="reservation.jsp">
+          <button class="cta-button">Book Your Stay</button>
+        </a>
+      </div>
+    </div>
+  </header>
 
-  <!-- Attractions Section -->
+  <!-- ======= ATTRACTIONS SECTION ======= -->
   <section class="section">
-    <h2>Explore the Island</h2>
-    <div class="attractions">
-      <%
-        // You can fetch attractions dynamically from the backend
-        String[] attractions = {"Hiking", "Kayaking", "Champagne Ferry Ride", "Fishing Experience"};
-        for (String attraction : attractions) {
-      %>
-        <div class="attraction-card">
-          <h3><%= attraction %></h3>
-          <p>Experience the best of Moffat Bay with our exciting <%= attraction %> activities.</p>
-        </div>
-      <%
-        }
-      %>
+    <div class="container">
+      <h2>Explore the Island</h2>
+
+      <!-- Attraction Cards (generated via JSP) -->
+      <div class="attractions">
+        <%
+          // Simple array of attractions - replace with DB call if needed
+          String[] attractions = {"Hiking", "Kayaking", "Whale Watching", "Scuba Diving"};
+          for (String attraction : attractions) {
+        %>
+          <div class="attraction-card">
+            <h3><%= attraction %></h3>
+            <p>Experience the best of Moffat Bay with our exciting <%= attraction %> activities.</p>
+          </div>
+        <%
+          }
+        %>
+      </div>
     </div>
   </section>
-  
-  <!-- This imports the Footer into the Page below everything -->
+
+  <!-- ======= INCLUDE FOOTER ======= -->
   <jsp:include page="Foot.jsp" flush="true"></jsp:include>
+
 </body>
 </html>

@@ -7,7 +7,6 @@
     utilizing collapsible sections and image previews. Styles and layout are handled via an external CSS file.
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +17,10 @@
 
 <body id="top">
 
-<!-- Include persistent navigation bar -->
+<!-- ===== Navbar Include ===== -->
 <jsp:include page="Navbar.jsp" flush="true"></jsp:include>
 
-<!-- Hero Section -->
+<!-- ===== Hero Section ===== -->
 <div class="hero">
   <div class="hero-overlay">
     <h4>Adventure Awaits</h4>
@@ -29,26 +28,23 @@
     <h1>Our Many Attractions</h1>
     <p>
       Moffat Bay Lodge offers a range of unforgettable experiences: 
-      guided tour hikes through the Gravel Point Preserve, kayaking along coastal edges and sea caves, 
-      champagne-filled ferry cruises with sunset views, and professional guided fishing trips.
+      guided hikes through the Gravel Point Preserve, kayaking along sea caves,
+      thrilling whale watching tours, and immersive scuba diving adventures.
     </p>
   </div>
 </div>
 
-
+<!-- ===== Main Content Container ===== -->
 <div class="container">
   <h2>Explore Island Experiences</h2>
 
-  <!-- Guided Tour Hike section -->
+  <!-- === Guided Tour Hike === -->
   <div class="attraction-section row-reverse">
-    <!-- Text Column -->
     <div class="attraction-text">
       <h3>Guided Tour Hike</h3>
       <p>Enjoy a group-led hike through the famous Gravel Point Preserve Hiking Trail.</p>
-      <p>This scenic trail offers beautiful ocean overlooks, wildlife sightings, and relaxing forest paths. Our knowledgeable guide shares fun facts along the way!</p>
+      <p>This scenic trail offers ocean overlooks, wildlife sightings, and relaxing forest paths. Our knowledgeable guide shares fun facts along the way!</p>
     </div>
-
-    <!-- Image Column -->
     <div class="attraction-media">
       <div class="carousel">
         <img class="carousel-image active" src="images/Hiking1.jpeg" alt="Hiking 1">
@@ -60,17 +56,13 @@
     </div>
   </div>
 
-
-  <!-- Kayaking section -->
+  <!-- === Kayaking === -->
   <div class="attraction-section">
-    <!-- Text Column -->
     <div class="attraction-text">
       <h3>Kayaking</h3>
       <p>Paddle through calm waters and explore sea caves and rocky island edges.</p>
       <p>Rent a kayak or join a group led by local paddlers. A great experience for beginners or pros with gear and safety equipment included.</p>
     </div>
-
-    <!-- Image Column -->
     <div class="attraction-media">
       <div class="carousel">
         <img class="carousel-image active" src="images/Kayaking1.jpg" alt="Kayaking 1">
@@ -82,97 +74,63 @@
     </div>
   </div>
 
-
-  <!-- Champagne Ferry Ride section -->
+  <!-- === Whale Watching === -->
   <div class="attraction-section row-reverse">
-    <!-- Text Column -->
     <div class="attraction-text">
-      <h3>Champagne-Filled Ferry Ride</h3>
-      <p>Relax on a scenic ferry cruise while enjoying complimentary champagne and stunning island views.</p>
-      <p>Our evening ferry tours offer a luxurious escape with drinks, snacks, and unforgettable photo opportunities at sunset.</p>
+      <h3>Whale Watching</h3>
+      <p>Board our eco-friendly boat for an unforgettable whale watching experience.</p>
+      <p>Spot orcas, humpbacks, and sea lions while learning from our marine naturalist guide. A peaceful yet thrilling way to enjoy the island’s marine life.</p>
     </div>
-
-  <!-- Image Column -->
-  <div class="attraction-media">
-    <div class="carousel">
-      <img class="carousel-image active" src="images/FerryRide2.jpg" alt="Ferry 1">
-      <img class="carousel-image" src="images/FerryRide3.jpg" alt="Ferry 2">
-      <img class="carousel-image" src="images/FerryRide1.jpg" alt="Ferry 3">
-      <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
-      <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
-    </div>
-  </div>
-  </div>
-
-
-  <!-- Fishing Experience section -->
-  <div class="attraction-section">
-    <!-- Text Column -->
-    <div class="attraction-text">
-      <h3>Fishing Experience with a Pro</h3>
-      <p>Spend a half-day on the water with our experienced guide who helps you learn, fish, and even get your license!</p>
-      <p>Our local fishing expert teaches everything from casting basics to advanced techniques. We also help you obtain a valid fishing license on the spot.</p>
-    </div>
-
-    <!-- Image Column -->
     <div class="attraction-media">
       <div class="carousel">
-        <img class="carousel-image active" src="images/Fishing1.jpg" alt="Fishing 1">
-        <img class="carousel-image" src="images/Fishing2.jpg" alt="Fishing 2">
-        <img class="carousel-image" src="images/Fishing3.jpg" alt="Fishing 3">
+        <img class="carousel-image active" src="images/Whale1.jpg" alt="Whale Watching 1">
+        <img class="carousel-image" src="images/Whale2.jpg" alt="Whale Watching 2">
+        <img class="carousel-image" src="images/Whale3.jpg" alt="Whale Watching 3">
         <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
         <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
       </div>
     </div>
   </div>
-  
-  <!-- Call-to-action Button Section -->
+
+  <!-- === Scuba Diving === -->
+  <div class="attraction-section">
+    <div class="attraction-text">
+      <h3>Scuba Diving</h3>
+      <p>Dive beneath the surface into the vibrant underwater world surrounding Moffat Bay.</p>
+      <p>Our certified dive instructors lead safe and exciting sessions among kelp forests, sea stars, and colorful fish. Gear rental and intro lessons available.</p>
+    </div>
+    <div class="attraction-media">
+      <div class="carousel">
+        <img class="carousel-image active" src="images/Scuba1.jpg" alt="Scuba 1">
+        <img class="carousel-image" src="images/Scuba2.jpg" alt="Scuba 2">
+        <img class="carousel-image" src="images/Scuba3.jpg" alt="Scuba 3">
+        <button class="carousel-btn prev" onclick="moveSlide(this, -1)">❮</button>
+        <button class="carousel-btn next" onclick="moveSlide(this, 1)">❯</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call-to-action -->
   <div class="bottom-cta">
     <a href="#top" class="cta-button">↑ Back to Top</a>
-    <!-- Optional: Swap above for "Book Now" with link -->
+    <!-- Optional: Replace with a "Book Now" link -->
     <!-- <a href="reservations.jsp" class="cta-button">Book Now</a> -->
   </div>
 </div>
 
-<!-- Include persistent footer -->
+<!-- ===== Footer Include ===== -->
 <jsp:include page="Foot.jsp" flush="true"></jsp:include>
 
-<!-- JavaScript to toggle each section's visibility and switch button text -->
+<!-- ===== JavaScript for Carousel Functionality ===== -->
 <script>
-  let currentOpen = "";
-  let currentLink = null;
-
-  function toggleAttraction(id, linkElement) {
-    if (currentOpen && currentOpen !== id) {
-      document.getElementById(currentOpen).style.display = "none";
-      if (currentLink) currentLink.innerText = "View more...";
-    }
-
-    const section = document.getElementById(id);
-
-    if (section.style.display === "none") {
-      section.style.display = "block";
-      linkElement.innerText = "View less...";
-      currentOpen = id;
-      currentLink = linkElement;
-    } else {
-      section.style.display = "none";
-      linkElement.innerText = "View more...";
-      currentOpen = "";
-      currentLink = null;
-    }
-  }
-  
   function moveSlide(button, direction) {
-	    const carousel = button.closest(".carousel");
-	    const images = carousel.querySelectorAll(".carousel-image");
-	    const activeIndex = [...images].findIndex(img => img.classList.contains("active"));
-	    
-	    let nextIndex = (activeIndex + direction + images.length) % images.length;
-
-	    images[activeIndex].classList.remove("active");
-	    images[nextIndex].classList.add("active");
-	  }
+    const carousel = button.closest(".carousel");
+    const images = carousel.querySelectorAll(".carousel-image");
+    const activeIndex = [...images].findIndex(img => img.classList.contains("active"));
+    const nextIndex = (activeIndex + direction + images.length) % images.length;
+    images[activeIndex].classList.remove("active");
+    images[nextIndex].classList.add("active");
+  }
 </script>
 
 </body>
