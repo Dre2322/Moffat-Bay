@@ -6,7 +6,6 @@
    It provides a clean, centered layout with responsive design and modern form styling.
 */
 
-/* Apply pale blue background to entire page */
 body {
   font-family: 'Open Sans', sans-serif;
   background-color: #B4CFEC; /* Pale blue background */
@@ -14,39 +13,90 @@ body {
   padding: 0;
 }
 
-/* Example container styling (you can adjust if needed) */
+.reservation-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 20px;
+  min-height: 100vh;
+}
+
 .container {
-  max-width: 800px;
-  margin: 100px auto;
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-/* Additional styling for form elements */
-label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-input, select, button {
+  max-width: 500px;
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-button {
-  background-color: #007BFF;
+h2 {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+  color: #333;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+input[type="date"]:focus {
+  border-color: #54d3f0;
+  outline: none;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #54d3f0;
   color: white;
+  font-size: 18px;
+  font-weight: bold;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+.submit-btn:hover {
+  background-color: #45b8d8;
+  transform: scale(1.03);
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  input[type="date"],
+  .submit-btn {
+    font-size: 16px;
+  }
 }
