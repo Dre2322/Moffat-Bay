@@ -6,78 +6,61 @@
    It supports a clean, responsive UI layout where users can enter guest count
    and choose room types by selecting quantities from dropdown menus. */
 
+/* General Layout and Body Styles */
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #f5f7fa;
+  background-color: #B4CFEC; /* Light blue background for a calm look */
   margin: 0;
   padding: 0;
 }
 
+/* Main container for the form */
 .container {
   background-color: #fff;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Adds depth with shadow */
   width: 90%;
-  max-width: 750px;
-  margin: 60px auto; /* centers the container */
+  max-width: 750px; /* Limit max width to prevent stretching on larger screens */
+  margin: 60px auto; /* Centers the container with top margin */
 }
 
+/* Header Styling */
 h2 {
   text-align: center;
   margin-bottom: 30px;
   color: #2c3e50;
-  font-size: 1.8rem;
+  font-size: 1.8rem; /* Responsive font size for header */
 }
 
-.form-group {
-  margin-bottom: 25px;
-}
-
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 6px;
-  color: #333;
-}
-
-input[type="number"],
-select {
+/* Form Input and Dropdown Styling */
+input[type="number"], select {
   width: 100%;
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f8f8f8;
+  transition: border-color 0.3s ease; /* Smooth transition when focused */
 }
 
+/* Focus State for Inputs and Selects */
+input[type="number"]:focus, select:focus {
+  border-color: #3ec6f0; /* Blue border when focused for better accessibility */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Styling for each room entry card */
 .room-entry {
   background-color: #ffffff;
   border: 1px solid #dcdcdc;
   padding: 20px 25px;
   border-radius: 12px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Adds slight shadow for depth */
 }
 
-.room-entry strong {
-  display: block;
-  font-size: 1.1rem;
-  color: #2c3e50;
-  margin-bottom: 8px;
-}
-
-.room-sub {
-  display: flex;
-  flex-direction: column;
-}
-
-.room-sub label {
-  margin-bottom: 5px;
-  font-size: 0.95rem;
-  color: #555;
-}
-
+/* Styling for the submit button */
 .submit-btn {
   margin-top: 25px;
   width: 100%;
@@ -92,13 +75,51 @@ select {
   transition: background-color 0.3s ease;
 }
 
+/* Hover effect for submit button */
 .submit-btn:hover {
-  background-color: #33b1d6;
+  background-color: #33b1d6; /* Darker blue on hover */
 }
 
+/* Error message styling */
 .error {
-  color: red;
+  color: black;
+  padding: 10px;
   font-size: 14px;
-  text-align: center;
   margin-top: 12px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* Media Query for smaller screens (mobile devices) */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px; /* Reduce padding for mobile devices */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Smaller header font size on mobile */
+  }
+
+  .submit-btn {
+    font-size: 16px; /* Adjust button size for smaller screens */
+    padding: 14px; /* Reduce button padding for mobile */
+  }
+}
+
+/* Media Query for ultra-wide screens (greater than 1920px) */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1200px; /* Increase container width for ultra-wide screens */
+    margin: 60px auto; /* Keep the container centered */
+    padding: 60px; /* Increase container padding for better alignment */
+  }
+
+  h2 {
+    font-size: 2.2rem; /* Larger header size for ultra-wide screens */
+  }
+
+  .submit-btn {
+    font-size: 20px; /* Larger button text for ultra-wide screens */
+    padding: 18px; /* Larger button padding */
+  }
 }

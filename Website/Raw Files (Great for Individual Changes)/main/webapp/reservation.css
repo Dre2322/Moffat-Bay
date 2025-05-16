@@ -6,31 +6,56 @@
    It provides a clean, centered layout with responsive design and modern form styling.
 */
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #f5f7fa;
-  margin: 0;
-  padding: 0;
+/* Reservation Page Styles - Alpha Team
+   Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
+
+   Purpose:
+   This stylesheet styles the reservation page where users select check-in/check-out dates.
+   It provides a clean, centered layout with responsive design and modern form styling.
+*/
+
+/* Ensure the background color covers the entire page */
+html, body {
+  height: 100%; /* Make sure the body and html take up the full height */
+  margin: 0; /* Reset any default margin */
+  padding: 0; /* Reset any default padding */
 }
 
+/* Body Styles */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #B4CFEC; /* Pale blue background */
+  color: #333; /* Ensure text is legible */
+}
+
+/* Main Reservation Section */
 .reservation-main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 80px 20px;
-  min-height: 100vh;
+  min-height: 100vh; /* Ensures it takes at least full viewport height */
 }
 
+/* Container for the reservation form */
 .container {
   max-width: 500px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #ffffff; /* White background for the form */
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
+/* Ultra-wide screen adjustments */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 800px; /* Expands container width for ultra-wide screens */
+  }
+}
+
+/* Header Styles */
 h2 {
   font-size: 24px;
   color: #2c3e50;
@@ -38,11 +63,13 @@ h2 {
   font-weight: 600;
 }
 
+/* Form Group for each input field */
 .form-group {
   margin-bottom: 25px;
   text-align: left;
 }
 
+/* Label Styles */
 label {
   font-weight: bold;
   margin-bottom: 8px;
@@ -50,6 +77,7 @@ label {
   color: #333;
 }
 
+/* Input Styles for Date Fields */
 input[type="date"] {
   width: 100%;
   padding: 12px;
@@ -60,11 +88,13 @@ input[type="date"] {
   transition: border 0.3s ease;
 }
 
+/* Focus State for Date Input Fields */
 input[type="date"]:focus {
   border-color: #54d3f0;
   outline: none;
 }
 
+/* Submit Button Styles */
 .submit-btn {
   width: 100%;
   padding: 14px;
@@ -78,11 +108,13 @@ input[type="date"]:focus {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Hover Effect for Submit Button */
 .submit-btn:hover {
   background-color: #45b8d8;
   transform: scale(1.03);
 }
 
+/* Error Message Styles */
 .error {
   color: red;
   font-size: 14px;
@@ -90,6 +122,7 @@ input[type="date"]:focus {
   text-align: center;
 }
 
+/* Media Query for Small Screens */
 @media (max-width: 600px) {
   .container {
     padding: 20px;

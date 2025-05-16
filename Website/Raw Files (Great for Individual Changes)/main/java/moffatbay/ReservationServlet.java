@@ -31,55 +31,60 @@ public class ReservationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getParameter("action");
+        String action = request.getParameter("action"); // Get the action parameter from the form
 
+        // Handle the action based on the value of 'action'
         switch (action) {
             case "selectRoom" -> handleSelectRoom(request, response);
             case "confirmReservation" -> handleConfirmReservation(request, response);
             case "editReservation" -> handleEditReservation(request, response);
             case "cancelReservation" -> handleCancelReservation(request, response);
-            default -> response.sendRedirect("reservation.jsp");
+            default -> response.sendRedirect("reservation.jsp"); // Default action if no valid action is provided
         }
     }
 
-    // Handles room selection based on date range
+    // Handles selection of room availability between dates
     private void handleSelectRoom(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
 
         HttpSession session = request.getSession();
-        session.setAttribute("pendingReservation_startDate", startDate);
-        session.setAttribute("pendingReservation_endDate", endDate);
+        session.setAttribute("pendingReservation_startDate", startDate); // Store start date in session
+        session.setAttribute("pendingReservation_endDate", endDate);     // Store end date in session
 
+        // Fetch available rooms for the specified date range
         List<HashMap<String, String>> availableRooms = fetchAvailableRooms(startDate, endDate);
 
+        // Forward the data to the room selection page (room.jsp)
         request.setAttribute("startDate", startDate);
         request.setAttribute("endDate", endDate);
         request.setAttribute("availableRooms", availableRooms);
         request.getRequestDispatcher("room.jsp").forward(request, response);
     }
 
-    // Confirms and inserts/updates reservation based on session state
+    // Handles confirmation logic for a new or edited reservation
     private void handleConfirmReservation(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // Check if user session exists
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user_id") == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("login.jsp"); // Redirect to login if no user session exists
             return;
         }
 
-        int userId = (int) session.getAttribute("user_id");
-
+        // Retrieve reservation details from request or session
         String startDate = Optional.ofNullable(request.getParameter("startDate"))
                 .orElse((String) session.getAttribute("pendingReservation_startDate"));
         String endDate = Optional.ofNullable(request.getParameter("endDate"))
                 .orElse((String) session.getAttribute("pendingReservation_endDate"));
         String numGuests = request.getParameter("numGuests");
-
         String[] selectedRoomTypeIds = request.getParameterValues("roomTypeId");
 
-        if (selectedRoomTypeIds == null || startDate == null || endDate == null) {
+        // Validate required fields
+        if (selectedRoomTypeIds == null || startDate == null || endDate == null || numGuests == null) {
             request.setAttribute("errorMessage", "Reservation details incomplete.");
             request.getRequestDispatcher("reservation.jsp").forward(request, response);
             return;
@@ -91,15 +96,19 @@ public class ReservationServlet extends HttpServlet {
         int generatedReservationId = 0;
         String confirmationNumber = null;
 
-        try (Connection conn = DBConnection.getConnection()) {
-            conn.setAutoCommit(false);
+        // Declare connection here, outside of try block
+        Connection conn = null;
 
+        try {
+            conn = DBConnection.getConnection(); // Get the database connection
+            conn.setAutoCommit(false); // Start transaction
+
+            // Handle reservation updates (if editing an existing reservation)
             String editReservationId = (String) session.getAttribute("editReservationId");
-
-            // If editing an existing reservation, update and clean previous room mappings
             if (editReservationId != null && !editReservationId.trim().isEmpty()) {
                 generatedReservationId = Integer.parseInt(editReservationId);
 
+                // Update existing reservation and remove previous room assignments
                 try (PreparedStatement update = conn.prepareStatement("""
                         UPDATE reservations 
                         SET check_in_date = ?, check_out_date = ?, num_guests = ?, special_requests = '', status = 'Confirmed', total_price = 0
@@ -118,17 +127,16 @@ public class ReservationServlet extends HttpServlet {
                     delete.executeUpdate();
                 }
 
-                session.removeAttribute("editReservationId");
-
+                session.removeAttribute("editReservationId"); // Clear the edit reservation ID
             } else {
-                // New reservation creation
+                // Insert new reservation if not editing
                 String insertReservationSQL = """
                         INSERT INTO reservations (user_id, check_in_date, check_out_date, num_guests, special_requests, status, total_price)
                         VALUES (?, ?, ?, ?, '', 'Confirmed', 0)
                     """;
 
                 try (PreparedStatement ps = conn.prepareStatement(insertReservationSQL, Statement.RETURN_GENERATED_KEYS)) {
-                    ps.setInt(1, userId);
+                    ps.setInt(1, (int) session.getAttribute("user_id"));
                     ps.setString(2, startDate);
                     ps.setString(3, endDate);
                     ps.setInt(4, Integer.parseInt(numGuests));
@@ -136,12 +144,12 @@ public class ReservationServlet extends HttpServlet {
 
                     ResultSet rs = ps.getGeneratedKeys();
                     if (rs.next()) {
-                        generatedReservationId = rs.getInt(1);
+                        generatedReservationId = rs.getInt(1); // Retrieve generated reservation ID
                     }
                 }
             }
 
-            // Insert room type selections for reservation
+            // Process room selections and calculate total cost
             for (String roomTypeIdStr : selectedRoomTypeIds) {
                 String countParam = request.getParameter("roomCount_" + roomTypeIdStr);
                 if (countParam == null || countParam.equals("0")) continue;
@@ -150,6 +158,7 @@ public class ReservationServlet extends HttpServlet {
                 int roomCount = Integer.parseInt(countParam);
                 totalRoomCount += roomCount;
 
+                // Fetch room details and calculate total cost
                 String roomSQL = "SELECT room_name, price_per_night FROM room_types WHERE room_type_id = ?";
                 try (PreparedStatement ps = conn.prepareStatement(roomSQL)) {
                     ps.setInt(1, roomTypeId);
@@ -163,8 +172,9 @@ public class ReservationServlet extends HttpServlet {
 
                         roomDetails.append(roomCount).append(" x ").append(roomName).append("<br>");
 
+                        // Insert room selection into the database
                         try (PreparedStatement insert = conn.prepareStatement(
-                                "INSERT INTO mbay.reservation_rooms (reservation_id, room_type_id, room_count) VALUES (?, ?, ?)")) {
+                                "INSERT INTO reservation_rooms (reservation_id, room_type_id, room_count) VALUES (?, ?, ?)")) {
                             insert.setInt(1, generatedReservationId);
                             insert.setInt(2, roomTypeId);
                             insert.setInt(3, roomCount);
@@ -174,7 +184,7 @@ public class ReservationServlet extends HttpServlet {
                 }
             }
 
-            // Update total cost
+            // Update the reservation's total cost
             try (PreparedStatement update = conn.prepareStatement("""
                     UPDATE reservations
                     SET total_price = ?
@@ -185,6 +195,9 @@ public class ReservationServlet extends HttpServlet {
                 update.executeUpdate();
             }
 
+            // Commit transaction
+            conn.commit();
+
             // Retrieve confirmation number
             try (PreparedStatement getCN = conn.prepareStatement(
                     "SELECT confirmation_number FROM reservations WHERE reservation_id = ?")) {
@@ -193,16 +206,28 @@ public class ReservationServlet extends HttpServlet {
                 if (rs.next()) confirmationNumber = rs.getString("confirmation_number");
             }
 
-            conn.commit();
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Logging error for debugging
+            try {
+                if (conn != null) conn.rollback(); // Rollback on error
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             request.setAttribute("errorMessage", "Database error: " + e.getMessage());
             request.getRequestDispatcher("reservation.jsp").forward(request, response);
             return;
+        } finally {
+            // Ensure connection is closed
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
-        // Populate summary page attributes
+        // Forward the reservation summary page with details
         request.setAttribute("checkInDate", startDate);
         request.setAttribute("checkOutDate", endDate);
         request.setAttribute("numOfGuests", numGuests);
@@ -210,12 +235,12 @@ public class ReservationServlet extends HttpServlet {
         request.setAttribute("roomDetails", roomDetails.toString());
         request.setAttribute("totalCost", String.format("%.2f", totalCost));
         request.setAttribute("confirmationNumber", confirmationNumber);
-        request.setAttribute("reservationId", generatedReservationId); // Send reservationId to JSP
+        request.setAttribute("reservationId", generatedReservationId);
 
         request.getRequestDispatcher("ReservationSummary.jsp").forward(request, response);
     }
 
-    // Rehydrates edit state and forwards to room.jsp
+    // Loads a previous reservation into the edit state
     private void handleEditReservation(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -224,12 +249,14 @@ public class ReservationServlet extends HttpServlet {
         String guests = request.getParameter("numGuests");
         String reservationId = request.getParameter("reservationId");
 
+        // Save editable reservation values to session
         HttpSession session = request.getSession(true);
         session.setAttribute("pendingReservation_startDate", startDate);
         session.setAttribute("pendingReservation_endDate", endDate);
         session.setAttribute("pendingReservation_numGuests", guests);
-        session.setAttribute("editReservationId", reservationId); // Track which reservation is being edited
+        session.setAttribute("editReservationId", reservationId);
 
+        // Reload available rooms and return to selection page
         List<HashMap<String, String>> availableRooms = fetchAvailableRooms(startDate, endDate);
 
         request.setAttribute("startDate", startDate);
@@ -239,38 +266,8 @@ public class ReservationServlet extends HttpServlet {
 
         request.getRequestDispatcher("room.jsp").forward(request, response);
     }
-    
-    // Handles the Cancellation of a Reservation
-    private void handleCancelReservation(HttpServletRequest request, HttpServletResponse response)
-    		throws ServletException, IOException {
-    	int reservationid = Integer.valueOf(request.getParameter("reservationId"));
-    	
-    	try (Connection conn = DBConnection.getConnection()) {
-    		// Delete Reservation Room First Due to Foreign Key Usage
-    		try (PreparedStatement cancel = conn.prepareStatement(
-    				"DELETE FROM reservation_rooms WHERE reservation_id = ?")) {
-    			cancel.setInt(1, reservationid);
-    			cancel.executeUpdate();
-    		}
-    		
-    		// Then Delete Reservation
-    		try (PreparedStatement cancel = conn.prepareStatement(
-    				"DELETE FROM reservations WHERE reservation_id = ?")) {
-    			cancel.setInt(1, reservationid);
-    			cancel.executeUpdate();
-    		}
-    	} catch (SQLException e) {
-            e.printStackTrace();
-            request.setAttribute("errorMessage", "Database error: " + e.getMessage());
-            request.getRequestDispatcher("ReservationSummary.jsp").forward(request, response);
-            return;
-        }
-    	
-    	// Return to Main Page
-    	request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
 
-    // Queries DB for available room types based on exclusion
+    // Returns a list of room types not booked during the given dates
     private List<HashMap<String, String>> fetchAvailableRooms(String startDate, String endDate) {
         List<HashMap<String, String>> availableRooms = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection()) {
@@ -302,8 +299,35 @@ public class ReservationServlet extends HttpServlet {
         }
         return availableRooms;
     }
+    
+    // Handles reservation cancellation
+    private void handleCancelReservation(HttpServletRequest request, HttpServletResponse response) 
+    		throws ServletException, IOException {
+        String reservationId = request.getParameter("reservationId");
 
-    // Calculates days between two date strings
+        if (reservationId == null || reservationId.trim().isEmpty()) {
+            response.sendRedirect("reservation.jsp");
+            return;
+        }
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(
+                     "UPDATE reservations SET status = 'Cancelled' WHERE reservation_id = ?")) {
+
+            ps.setInt(1, Integer.parseInt(reservationId));
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Cancellation failed: " + e.getMessage());
+            request.getRequestDispatcher("ReservationSummary.jsp").forward(request, response);
+            return;
+        }
+
+        response.sendRedirect("reservation.jsp"); // Or confirmation page if available
+    }
+
+    // Calculates number of days between two dates (inclusive)
     private long calculateDaysBetween(String start, String end) {
         try {
             LocalDate d1 = LocalDate.parse(start);

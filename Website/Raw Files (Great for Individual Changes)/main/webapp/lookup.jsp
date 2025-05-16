@@ -15,18 +15,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Look Up Reservation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f9f9f9;
-            color: #2c3e50;
-            /*display: block;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;*/
-        }
 
+    <!-- Google Font for consistent typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!-- Internal styles for layout and responsiveness -->
+    <style>
+		/* Ensure the page takes up the full viewport height and removes default spacing */
+		html, body {
+    		height: 100%;    /* Full height to support full-background color */
+    		margin: 0;       /* Remove default margin */
+    		padding: 0;      /* Remove default padding */
+		}
+
+		/* Apply base font and background styling to the entire body */
+		body {
+		    font-family: 'Open Sans', sans-serif;  /* Clean and modern font */
+    		background-color: #B4CFEC;             /* Pale blue background for a calming look */
+    		color: #2c3e50;                        /* Dark gray text for good contrast */
+		}
+
+        /* Main container for form and results */
         .container {
             background: white;
             padding: 100px;
@@ -35,27 +44,22 @@
             text-align: center;
             width: 100%;
             max-width: 1000px;
-            /*overflow: hidden;*/
-            /*Moved here for testing*/
-            /*display: block;
-            justify-content: center;
-            align-items: center;
-            height: 50vh;*/
-            /*Added these*/
             margin: 10% auto;
-            /*box-sizing: none;*/
         }
 
+        /* Header title */
         h2 {
             margin-bottom: 10px;
         }
 
+        /* Subtext description */
         p.note {
             font-size: 14px;
             color: #666;
             margin-bottom: 25px;
         }
 
+        /* Form inputs for text and email */
         input[type="text"],
         input[type="email"] {
             width: 90%;
@@ -65,6 +69,7 @@
             border: 1px solid #ccc;
         }
 
+        /* Submit button */
         input[type="submit"] {
             background-color: #0077cc;
             color: white;
@@ -74,113 +79,148 @@
             cursor: pointer;
         }
 
+        /* Hover effect on submit button */
         input[type="submit"]:hover {
             background-color: #005fa3;
         }
 
+        /* Error message styling */
         .error {
             color: red;
             margin-top: 10px;
         }
-        
-        #lookupDetails table, 
-		#lookupDetails th, 
-		#lookupDetails td {
-    		border: none; 
-		}
-		
-		#lookupDetails th, td {
-			padding: 10px 20px;
-			text-align:center;
-		}
-		
-		#lookupDetails table {
-			width: 100%;
-			border-collapse: separate;
-			border-spacing: 0 10px;
-		}
-		
-		#lookupDetails h2 {
-		    text-align: left;
-		    font-size: 20px;
-		    color: #333;
-		}
-		
-		#lookupDetails {
-			margin-top: 40px;
-			margin-left: -30px;
-		}
-        
+
+        /* Reservation table styling */
+        #lookupDetails table,
+        #lookupDetails th,
+        #lookupDetails td {
+            border: none;
+        }
+
+        #lookupDetails th, td {
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        #lookupDetails table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        #lookupDetails h2 {
+            text-align: left;
+            font-size: 20px;
+            color: #333;
+        }
+
+        #lookupDetails {
+            margin-top: 40px;
+            margin-left: -30px;
+        }
+
+        /* Small screen adjustments (phones, tablets) */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                width: 100%;
+            }
+
+            #lookupDetails {
+                margin-left: 0;
+            }
+        }
+
+        /* Ultra-wide screen support (large desktops, 2K+) */
+        @media (min-width: 1920px) {
+            .container {
+                max-width: 1400px;
+                padding: 80px 100px;
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                width: 60%;
+                font-size: 16px;
+            }
+
+            input[type="submit"] {
+                font-size: 16px;
+                padding: 12px 30px;
+            }
+
+            #lookupDetails table {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
+    <!-- Shared site-wide navigation bar -->
+    <jsp:include page="Navbar.jsp" flush="true"></jsp:include>
 
-<!-- This imports the NavBar into the page -->
-<jsp:include page="Navbar.jsp" flush="true"></jsp:include>
+    <!-- Main reservation lookup form container -->
+    <div class="container">
+        <h2>Look Up Your Reservation</h2>
+        <p class="note">Enter your confirmation number or email — only one is required.</p>
 
-	<div class="container">
-	    <h2>Look Up Your Reservation</h2>
-	    <p class="note">Enter your confirmation number or email — only one is required.</p>
-	
-	    <form action="LookupReservationServlet" method="post">
-	        <input type="text" name="confirmationNumber" placeholder="Confirmation Number"><br>
-	        <input type="email" name="email" placeholder="Email"><br>
-	        <input type="submit" value="Look Up Reservation">
-	    </form>
-	
-	    <% 
-	        String error = (String) request.getAttribute("error");
-	        if (error != null) { 
-	    %>
-	        <div class="error"><%= error %></div>
-	    <% 
-	        } 
-	    %>
-	    
-	    <div id="lookupDetails" >	
-		    <%	
-		    	//if no attributes have been received from the servlet do not display this
-		    	List<Map<String, Object>> reservations = (List<Map<String, Object>>) request.getAttribute("reservations");
-    			if (reservations != null && !reservations.isEmpty()) {
-		    %>
+        <!-- Form sends user input to LookupReservationServlet -->
+        <form action="LookupReservationServlet" method="post">
+            <input type="text" name="confirmationNumber" placeholder="Confirmation Number"><br>
+            <input type="email" name="email" placeholder="Email"><br>
+            <input type="submit" value="Look Up Reservation">
+        </form>
 
-		    
-		    <h2> Your Stays: </h2>
-		    
-		    <div id="details">
-			    <table>
-			    	<tr>
-			    		<th>Confirmation Number</th>
-			    		<th>Room</th>
-			    		<th>Guests</th>
-			    		<th>Check In</th>
-			    		<th>Check Out</th>
-			    		<th> Total </th>
-			    	</tr>
-			    	<%
-			    		for (Map<String, Object> res : reservations) {
-			    	%>
-			    	<tr>
-			    		<td><%= res.get("confirmationNumber") %></td>
-			    		<td><%= res.get("roomName") %></td>
-			    		<td><%= res.get("numOfGuests") %></td>
-			    		<td><%= res.get("checkInDate") %></td>
-			    		<td><%= res.get("checkOutDate") %></td>
-			    		<td><%= res.get("totalCost") %></td>
-			    	</tr>
-			    	<%
-			    		}
-			    	%>
-			    </table>
-		    </div>
-		    <% } %> 	    
-	    </div>
-	    
-	</div>
+        <!-- Display error if set by servlet -->
+        <% 
+            String error = (String) request.getAttribute("error");
+            if (error != null) { 
+        %>
+            <div class="error"><%= error %></div>
+        <% } %>
 
-<!-- This imports the Footer into the Page below everything -->
-<jsp:include page="Foot.jsp" flush="true"></jsp:include>
+        <!-- Display matching reservation(s) returned from servlet -->
+        <div id="lookupDetails">
+            <%  
+                List<Map<String, Object>> reservations = (List<Map<String, Object>>) request.getAttribute("reservations");
+                if (reservations != null && !reservations.isEmpty()) {
+            %>
+
+            <h2>Your Stays:</h2>
+            <div id="details">
+                <table>
+                    <tr>
+                        <th>Confirmation Number</th>
+                        <th>Room</th>
+                        <th>Guests</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Total</th>
+                    </tr>
+                    <% for (Map<String, Object> res : reservations) { %>
+                        <tr>
+                            <td><%= res.get("confirmationNumber") %></td>
+                            <td><%= res.get("roomName") %></td>
+                            <td><%= res.get("numOfGuests") %></td>
+                            <td><%= res.get("checkInDate") %></td>
+                            <td><%= res.get("checkOutDate") %></td>
+                            <td><%= res.get("totalCost") %></td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Shared footer across all pages -->
+    <jsp:include page="Foot.jsp" flush="true"></jsp:include>
 
 </body>
 </html>

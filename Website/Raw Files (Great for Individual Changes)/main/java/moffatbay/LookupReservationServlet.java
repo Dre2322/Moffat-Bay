@@ -13,14 +13,21 @@ package moffatbay;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+/**
+ * Servlet for handling reservation lookups based on confirmation number or email.
+ * Allows users to search for individual or all reservations and view booking details.
+ */
 @WebServlet("/LookupReservationServlet")
 public class LookupReservationServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Processes POST requests from the lookup form.
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,6 +36,7 @@ public class LookupReservationServlet extends HttpServlet {
         String email = request.getParameter("email");
         String sql;
 
+        // Require at least one input to proceed
         if ((confirmationNumber == null || confirmationNumber.trim().isEmpty()) &&
             (email == null || email.trim().isEmpty())) {
             request.setAttribute("error", "Please provide either a confirmation number or email.");
@@ -39,8 +47,8 @@ public class LookupReservationServlet extends HttpServlet {
         try (Connection conn = DBConnection.getConnection()) {
             PreparedStatement stmt;
 
+            // Case 1: Lookup by Confirmation Number (and optional email match)
             if (confirmationNumber != null && !confirmationNumber.trim().isEmpty()) {
-                // Lookup by confirmation number
                 sql = """
                     SELECT r.confirmation_number, u.email, r.check_in_date, r.check_out_date,
                            r.num_guests, r.total_price,
@@ -57,6 +65,7 @@ public class LookupReservationServlet extends HttpServlet {
 
                 try (ResultSet rs = stmt.executeQuery()) {
                     if (rs.next()) {
+                        // If email was provided, validate it matches
                         String dbEmail = rs.getString("email");
                         if (email != null && !email.isEmpty() && !email.equalsIgnoreCase(dbEmail)) {
                             request.setAttribute("error", "Email does not match our records.");
@@ -64,6 +73,7 @@ public class LookupReservationServlet extends HttpServlet {
                             return;
                         }
 
+                        // Build single reservation result
                         Map<String, Object> res = new HashMap<>();
                         res.put("confirmationNumber", rs.getString("confirmation_number"));
                         res.put("checkInDate", rs.getString("check_in_date"));
@@ -74,18 +84,19 @@ public class LookupReservationServlet extends HttpServlet {
 
                         List<Map<String, Object>> reservations = new ArrayList<>();
                         reservations.add(res);
-                        request.setAttribute("reservations", reservations);
 
+                        request.setAttribute("reservations", reservations);
                         request.getRequestDispatcher("lookup.jsp").forward(request, response);
                         return;
                     } else {
+                        // No reservation matched the confirmation number
                         request.setAttribute("error", "No reservation found.");
                         request.getRequestDispatcher("lookup.jsp").forward(request, response);
                     }
                 }
 
+            // Case 2: Lookup all reservations by Email
             } else {
-                // Lookup all reservations by email
                 sql = """
                     SELECT r.confirmation_number, u.email, r.check_in_date, r.check_out_date,
                            r.num_guests, r.total_price,
@@ -115,6 +126,7 @@ public class LookupReservationServlet extends HttpServlet {
                         reservations.add(res);
                     }
 
+                    // If no results found, inform user
                     if (reservations.isEmpty()) {
                         request.setAttribute("error", "No reservations found.");
                     } else {
@@ -124,7 +136,9 @@ public class LookupReservationServlet extends HttpServlet {
                     request.getRequestDispatcher("lookup.jsp").forward(request, response);
                 }
             }
+
         } catch (SQLException e) {
+            // Handle and log database-related exceptions
             throw new ServletException("Database error while looking up reservations", e);
         }
     }
