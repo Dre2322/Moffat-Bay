@@ -6,7 +6,6 @@
    It provides a clean, centered layout with responsive design and modern form styling.
 */
 
-<<<<<<< HEAD
 /* Reservation Page Styles - Alpha Team
    Consists of Andres Melendez, Jeffrey Reid, Edgar Arroyo, Jordany Gonzalez, and Matthew Trinh
 
@@ -20,13 +19,6 @@ html, body {
   height: 100%; /* Make sure the body and html take up the full height */
   margin: 0; /* Reset any default margin */
   padding: 0; /* Reset any default padding */
-=======
-body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #B4CFEC; /* Pale blue background */
-  margin: 0;
-  padding: 0;
->>>>>>> 59f4f5470a6775c93ab294007e1d8f41e447dff8
 }
 
 /* Body Styles */
