@@ -18,7 +18,7 @@ section provides phone, email, and physical address details for potential guests
   <style>
     body {
       font-family: 'Open Sans', sans-serif;
-      background-color: #f0f4f8;
+      background-color: #e1effb; /* Updated to pale blue */
       margin: 0;
       padding: 0;
     }
