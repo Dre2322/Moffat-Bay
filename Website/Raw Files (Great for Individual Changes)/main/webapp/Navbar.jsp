@@ -17,12 +17,15 @@ for users to navigate through the site. -->
     <meta name="author" content="Andres Melendez, Jeffrey Reid, Jordany Gonzalez">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
-    
+
+    <!-- FontAwesome Icons -->
     <script src="https://kit.fontawesome.com/6af38ce6e0.js" crossorigin="anonymous"></script>
 
     <style>
+        /* Reset and base styling */
         * {
             margin: 0;
             padding: 0;
@@ -34,26 +37,32 @@ for users to navigate through the site. -->
             color: #2c3e50;
         }
 
-        /* ======= NAVBAR ======= */
-		.navbar {
-		    /*position: fixed;    DO NOT UNCOMMENT THIS. THE NAVBAR SHOULD NOT BE FIXED!!!*/
-		    top: 0;
-		    left: 0;
-		    width: 100%; /* <-- ensures it stretches full width */
-		    display: flex;
-		    align-items: center;
-		    justify-content: space-between;
-		    background-color: #14c2e9;
-		    padding: 1.3rem 3rem;
-		    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-		    z-index: 1000; /* optional, ensures it's above other elements */		    
-		}
+        /* ======= NAVBAR WRAPPER ======= */
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* centers the inner navbar on ultrawide screens */
+            background-color: #14c2e9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 1.3rem 0;
+            z-index: 1000;
+        }
 
+        /* ======= INNER CONTAINER FOR CONTENT ======= */
+        .navbar-inner {
+            width: 100%;
+            max-width: 1440px; /* keeps content readable on ultra-wide screens */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3rem;
+        }
+
+        /* ======= LEFT (Logo) ======= */
         .navbar-left a {
             text-decoration: none;
             color: #000;
             transition: all 0.2s ease;
-            cursor: pointer;
         }
 
         .navbar-left a:hover {
@@ -68,7 +77,7 @@ for users to navigate through the site. -->
             margin: 0;
         }
 
-        /* Center Nav Links */
+        /* ======= CENTER LINKS ======= */
         .navbar-center {
             display: flex;
             justify-content: center;
@@ -81,7 +90,6 @@ for users to navigate through the site. -->
             color: black;
             font-weight: 600;
             font-size: 1rem;
-            cursor: pointer;
         }
 
         .navbar-center a:hover {
@@ -89,7 +97,7 @@ for users to navigate through the site. -->
             text-decoration: underline;
         }
 
-        /* Auth Buttons (Login/Signup or My Account/Logout) */
+        /* ======= RIGHT (Auth Buttons) ======= */
         .navbar-right {
             display: flex;
             gap: 1rem;
@@ -106,23 +114,21 @@ for users to navigate through the site. -->
         }
 
         .auth-button:hover {
-            background-color: #000;
-            color: white;
+            background-color: #fff;
+            color: #000;
+            border-color: #000;
         }
 
-        /* Logout Button */
         .navlogout {
             padding: 0.5rem 1rem;
             border: 2px solid #000;
             border-radius: 5px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-            transition: all 0.2s ease;
             background-color: #14c2e9;
             font-family: 'Open Sans', sans-serif;
             font-weight: bold;
             font-size: 1em;
+            color: black;
+            transition: all 0.2s ease;
         }
 
         .navlogout:hover {
@@ -131,23 +137,21 @@ for users to navigate through the site. -->
             cursor: pointer;
         }
 
-        /* ======= RESPONSIVE ======= */
+        /* ======= MOBILE STYLES ======= */
         @media (max-width: 768px) {
-            .navbar {
+            .navbar-inner {
                 flex-direction: column;
                 align-items: flex-start;
             }
 
-            /* Hide desktop links on mobile */
             .navbar-center {
-                display: none; /* Hide links on mobile */
+                display: none; /* hide links on small screens */
             }
 
             .navbar-right {
-                display: none; /* Hide auth buttons on mobile */
+                display: none; /* hide buttons on small screens */
             }
 
-            /* Show hamburger icon for mobile */
             .navbar-toggle {
                 display: block;
                 cursor: pointer;
@@ -155,27 +159,34 @@ for users to navigate through the site. -->
                 margin-left: auto;
             }
 
-            /* Mobile Links */
             .navbar-mobile {
                 display: none;
-                width: 100%;
                 flex-direction: column;
-                text-align: left;
+                width: 100%;
+                padding: 1rem 3rem;
+                background-color: #14c2e9;
             }
 
-            /* Show mobile menu when active */
+            .navbar-mobile a {
+                text-decoration: none;
+                color: black;
+                margin-bottom: 1rem;
+                font-weight: bold;
+            }
+
+            .navbar-mobile a:hover {
+                text-decoration: underline;
+                color: #0056b3;
+            }
+
             .navbar-mobile.active {
                 display: flex;
             }
         }
 
-        /* ======= Desktop View ======= */
+        /* Hide mobile elements on desktop */
         @media (min-width: 769px) {
-            /* Hide mobile elements on desktop */
-            .navbar-toggle {
-                display: none;
-            }
-
+            .navbar-toggle,
             .navbar-mobile {
                 display: none;
             }
@@ -184,51 +195,51 @@ for users to navigate through the site. -->
 </head>
 
 <body>
-    <!-- Navbar -->
+    <!-- ======= NAVIGATION HEADER ======= -->
     <header>
         <div class="navbar">
-            <!-- Logo Section -->
-            <div class="navbar-left">
-                <a href="index.jsp">
-                    <h1>Moffat Bay Lodge</h1>
-                </a>
+            <div class="navbar-inner">
+                <!-- Logo / Home -->
+                <div class="navbar-left">
+                    <a href="index.jsp">
+                        <h1>Moffat Bay Lodge</h1>
+                    </a>
+                </div>
+
+                <!-- Main nav links (desktop) -->
+                <div class="navbar-center">
+                    <a href="attractions.jsp">Attractions</a>
+                    <a href="reservation.jsp">Reservations</a>
+                    <a href="lookup.jsp">My Reservation</a>
+                </div>
+
+                <!-- Login / Signup or Welcome / Logout -->
+                <div class="navbar-right" id="authArea">
+                    <% 
+                        String firstName = (String) session.getAttribute("first_name");
+                        if (session.getAttribute("user_id") == null) {
+                    %>
+                        <a href="login.jsp" class="auth-button">Login</a>
+                        <a href="RegistrationPage.jsp" class="auth-button">Sign Up</a>
+                    <% 
+                        } else { 
+                    %>
+                        <span style="align-self: center; font-weight: bold;">
+                            Welcome, <%= firstName %>
+                        </span>
+                        <form method="post" action="LogoutServlet">
+                            <input class="navlogout" type="submit" value="Logout">
+                        </form>
+                    <% 
+                        }
+                    %>
+                </div>
+
+                <!-- Hamburger menu icon (mobile) -->
+                <div class="navbar-toggle" onclick="toggleNavbar()">☰</div>
             </div>
 
-            <!-- Navigation Links for Desktop -->
-            <div class="navbar-center">
-                <a href="attractions.jsp">Attractions</a>
-                <a href="reservation.jsp">Reservations</a>
-                <a href="lookup.jsp">My Reservation</a>
-            </div>
-
-            <!-- Auth Buttons -->
-            <div class="navbar-right" id="authArea">
-                <%-- Dynamically show login/logout button --%>
-                <%
-    				String firstName = (String) session.getAttribute("first_name");
-    				if (session.getAttribute("user_id") == null) {
-				%>
-				    <a href="login.jsp" class="auth-button">Login</a>
-				    <a href="RegistrationPage.jsp" class="auth-button">Sign Up</a>
-				<%
-				    } else {
-				%>
-				    <span style="align-self: center; font-weight: bold;">
-				        Welcome, <%= firstName %>
-				    </span>
-				    <form method="post" action="LogoutServlet">
-				        <input class="navlogout" type="submit" value="Logout">
-				    </form>
-				<%
-				    }
-				%>
-
-            </div>
-
-            <!-- Hamburger Icon for Mobile -->
-            <div class="navbar-toggle" onclick="toggleNavbar()">☰</div>
-
-            <!-- Mobile Navigation Menu -->
+            <!-- Mobile navigation links -->
             <div class="navbar-mobile">
                 <a href="attractions.jsp">Attractions</a>
                 <a href="reservation.jsp">Reservations</a>
@@ -238,7 +249,7 @@ for users to navigate through the site. -->
     </header>
 
     <script>
-        // Function to toggle mobile navbar visibility
+        // Toggle mobile menu visibility
         function toggleNavbar() {
             const menu = document.querySelector('.navbar-mobile');
             menu.classList.toggle('active');
