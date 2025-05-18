@@ -72,10 +72,10 @@ Reservations and user information are stored securely in a MySQL database.
 ## 🏡 Reservation System
 
 - **Room Sizes & Rates:**
-  - Double Full Beds – $120/night
-  - Queen – $135/night
-  - Double Queen Beds – $150/night
-  - King – $160/night
+  - Double Full Beds – $126/night
+  - Queen – $141.75/night
+  - Double Queen Beds – $157.50/night
+  - King – $168/night
 - **Inputs Collected:**
   - Room type, number of guests, check-in/check-out dates
 - **Features:**
